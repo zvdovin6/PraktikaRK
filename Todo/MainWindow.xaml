@@ -5,17 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Todo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
-    <Grid>
-        <Image HorizontalAlignment="Left" Height="149" Margin="78,66,0,0" VerticalAlignment="Top" Width="149" RenderTransformOrigin="0.501,0.505" Source="/Рисунок1.png"/>
-        <Label Content="Добро пожаловать!" HorizontalAlignment="Left" Height="54" Margin="406,66,0,0" VerticalAlignment="Top" Width="315" FontSize="32"/>
-        <Label Content="Почта" HorizontalAlignment="Left" Height="39" Margin="406,200,0,0" VerticalAlignment="Top" Width="78" FontSize="20"/>
-        <Border Background="#F96060" BorderBrush="#F96060" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="400,437,0,0" VerticalAlignment="Top" Width="327" CornerRadius="20,20,5,5">
+        Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid Margin="-23,0,-31,-31"
+          Width="835"
+          Height="606">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="404*" />
+            <ColumnDefinition Width="23*" />
+        </Grid.ColumnDefinitions>
+        <Image HorizontalAlignment="Left" Height="149" Margin="64,66,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.501,0.505" Source="/Рисунок1.png"/>
+        <Label Content="Добро пожаловать!" HorizontalAlignment="Left" Height="54" Margin="367,66,0,0" VerticalAlignment="Top" Width="315" FontSize="32"/>
+        <Label Content="Почта" HorizontalAlignment="Left" Height="39" Margin="367,200,0,0" VerticalAlignment="Top" Width="78" FontSize="20"/>
+        <Border Background="#F96060" BorderBrush="#F96060" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="412,423,0,0" VerticalAlignment="Top" Width="327" CornerRadius="20,20,5,5">
             <Button Content="Войти" HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="279" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" FontSize="18"/>
         </Border>
-        <Border Background="#F96060" BorderBrush="#F96060" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="400,502,0,0" VerticalAlignment="Top" Width="327" CornerRadius="5,5,20,20">
+        <Border Background="#F96060" BorderBrush="#F96060" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="412,476,0,0" VerticalAlignment="Top" Width="327" CornerRadius="5,5,20,20">
             <Button Content="Регистрация" HorizontalAlignment="Left" Height="48" Margin="24,0,0,0" VerticalAlignment="Top" Width="274" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" FontSize="18"/>
         </Border>
+        <Label Content="Пароль" HorizontalAlignment="Left" Height="39" Margin="367,292,0,0" VerticalAlignment="Top" Width="78" FontSize="20"/>
+        <TextBox BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="367,239,70,334" FontSize="16"/>
+        <TextBox BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="367,336,70,236" FontSize="16" />
+        <Label Content="Восстановить пароль" HorizontalAlignment="Left" Margin="541,372,0,0" VerticalAlignment="Top" FontSize="18" Height="38" RenderTransformOrigin="0.504,-0.022" Width="190">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.15"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.249"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
     </Grid>
 </Window>
        
