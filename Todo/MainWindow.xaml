@@ -45,8 +45,8 @@
             <Button Content="Регистрация" HorizontalAlignment="Left" Height="48" Margin="24,0,0,0" VerticalAlignment="Top" Width="274" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" FontSize="18" Click="Button_Click"/>
         </Border>
         <Label Content="Пароль" HorizontalAlignment="Left" Height="39" Margin="367,292,0,0" VerticalAlignment="Top" Width="78" FontSize="20"/>
-        <TextBox BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="367,239,70,334" FontSize="16"/>
-        <TextBox BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="367,336,70,236" FontSize="16" />
+        <TextBox x:Name="EmailTextBox" BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="367,239,70,334" FontSize="16" GotFocus="EmailTextBox_GotFocus" LostFocus="EmailTextBox_LostFocus"/>
+        <TextBox x:Name="PasswordTextBox" BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="367,336,70,236" FontSize="16" GotFocus="PasswordTextBox_GotFocus" LostFocus="PasswordTextBox_LostFocus"/>
         <Label Content="Восстановить пароль" HorizontalAlignment="Left" Margin="541,372,0,0" VerticalAlignment="Top" FontSize="18" Height="38" RenderTransformOrigin="0.504,-0.022" Width="190">
             <Label.RenderTransform>
                 <TransformGroup>

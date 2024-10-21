@@ -45,12 +45,12 @@
             <Button Content="Назад" HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="274" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" FontSize="18" Click="Button_Click"/>
         </Border>
         <Label Content="Ваша почта" HorizontalAlignment="Left" Height="36" Margin="419,146,0,0" VerticalAlignment="Top" Width="118" FontSize="20" RenderTransformOrigin="0.483,0.74"/>
-        <TextBox BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="418,111,45,465" FontSize="16"/>
-        <TextBox BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="418,182,45,391" FontSize="16" />
-        <TextBox BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="419,259,45,311" FontSize="16" />
+        <TextBox x:Name="NameTextBox" BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="418,111,45,465" FontSize="16" GotFocus="NameTextBox_GotFocus" LostFocus="NameTextBox_LostFocus"/>
+        <TextBox x:Name="EmailTextBox1" BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="418,182,45,391" FontSize="16" GotFocus="EmailTextBox1_GotFocus" LostFocus="EmailTextBox1_LostFocus"/>
+        <TextBox x:Name="PasswordTextBox1" BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="419,259,45,311" FontSize="16" GotFocus="PasswordTextBox1_GotFocus" LostFocus="PasswordTextBox1_LostFocus"/>
         <Label Content="Пароль" HorizontalAlignment="Left" Height="39" Margin="419,220,0,0" VerticalAlignment="Top" Width="96" FontSize="20"/>
         <Label Content="Повторите пароль" HorizontalAlignment="Left" Height="42" Margin="418,300,0,0" VerticalAlignment="Top" Width="184" FontSize="20"/>
-        <TextBox BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="419,342,45,233" FontSize="16" />
+        <TextBox x:Name="ConfirmPasswordTextBox" BorderBrush="#EDEDED" BorderThickness="0,0,0,2" Margin="419,342,45,233" FontSize="16" GotFocus="ConfirmPasswordTextBox_GotFocus" LostFocus="ConfirmPasswordTextBox_LostFocus"/>
 
     </Grid>
 </Window>

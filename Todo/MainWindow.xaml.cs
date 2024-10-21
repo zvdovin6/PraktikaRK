@@ -25,8 +25,45 @@ namespace Todo
         {
             InitializeComponent();
 
+            EmailTextBox.Text = "Введите почту";
+            EmailTextBox.Foreground = new SolidColorBrush(Colors.Gray);
+            PasswordTextBox.Text = "Введите пароль";
+            PasswordTextBox.Foreground = new SolidColorBrush(Colors.Gray);
+        }
 
+        private void EmailTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (EmailTextBox.Text == "Введите почту")
+            {
+                EmailTextBox.Text = "";
+                EmailTextBox.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
 
+        private void EmailTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(EmailTextBox.Text))
+            {
+                EmailTextBox.Text = "Введите почту";
+                EmailTextBox.Foreground = new SolidColorBrush(Colors.Gray);
+            }
+        }
+        private void PasswordTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (PasswordTextBox.Text == "Введите пароль")
+            {
+                PasswordTextBox.Text = "";
+                PasswordTextBox.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void PasswordTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(PasswordTextBox.Text))
+            {
+                PasswordTextBox.Text = "Введите пароль";
+                PasswordTextBox.Foreground = new SolidColorBrush(Colors.Gray);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
