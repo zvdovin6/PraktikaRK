@@ -39,7 +39,7 @@
         <Label Content="Welcome back!" HorizontalAlignment="Left" Height="49" Margin="472,19,0,0" VerticalAlignment="Top" Width="226" FontSize="32"/>
         <Label Content="Имя пользователя" HorizontalAlignment="Left" Height="37" Margin="413,69,0,0" VerticalAlignment="Top" Width="191" FontSize="20" RenderTransformOrigin="0.463,0.528"/>
         <Border Background="#F96060" BorderBrush="#F96060" BorderThickness="1" HorizontalAlignment="Left" Height="56" Margin="400,389,0,0" VerticalAlignment="Top" Width="370" CornerRadius="20,20,5,5">
-            <Button Content="Зарегистрироваться" HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="279" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" FontSize="18"/>
+            <Button Content="Зарегистрироваться" HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="279" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" FontSize="18" Click="Button_Click_1"/>
         </Border>
         <Border Background="#F96060" BorderBrush="#F96060" BorderThickness="1" HorizontalAlignment="Left" Height="56" Margin="400,450,0,0" VerticalAlignment="Top" Width="370" CornerRadius="5,5,20,20">
             <Button Content="Назад" HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="274" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" FontSize="18" Click="Button_Click"/>

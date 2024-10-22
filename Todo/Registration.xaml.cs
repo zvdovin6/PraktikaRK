@@ -108,5 +108,30 @@ namespace Todo
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();  
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var validator = new InputValidator();
+
+            string email = EmailTextBox1.Text;
+            string password = PasswordTextBox1.Text;
+
+
+            bool isEmailValid = validator.IsValidEmail(email);
+            bool isPasswordValid = validator.IsValidPassword(password);
+
+
+            if (isEmailValid && isPasswordValid)
+            {
+                Main_empty main_Empty = new Main_empty();
+                main_Empty.ShowDialog();
+
+
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, проверьте введенные данные.");
+            }
+        }
     }
 }
