@@ -5,8 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Todo"
         mc:Ignorable="d"
-        Title="Main_empty" Height="450" Width="800">
-    <Grid>
-        
+        Title="Main_empty" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FFF96060"/>
+            <Setter Property="BorderBrush" Value="#FFF96060"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        CornerRadius="20">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="-23,0,-31,-31"
+       Width="835"
+       Height="606">
+        <Image HorizontalAlignment="Left" Height="76" Margin="31,10,0,0" VerticalAlignment="Top" Width="75" Source="/image.png"/>
+        <Label Content="Добро пожаловать!" HorizontalAlignment="Left" Height="54" Margin="172,127,0,0" VerticalAlignment="Top" Width="306" FontSize="32"/>
+        <Label Content="Создайте свою первую задачу!" HorizontalAlignment="Left" Height="73" Margin="172,208,0,0" VerticalAlignment="Top" Width="524" FontSize="32"/>
+        <Border Background="#F96060" BorderBrush="#F96060" BorderThickness="1" HorizontalAlignment="Center" Height="48" Margin="0,331,0,0" VerticalAlignment="Top" Width="314" CornerRadius="5,5,5,5">
+            <Button Content="Создать первую задачу" HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="254" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" FontSize="18" Click="Button_Click_1"/>
+        </Border>
+
     </Grid>
 </Window>
