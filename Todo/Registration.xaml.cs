@@ -106,32 +106,57 @@ namespace Todo
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();  
+            mainWindow.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var validator = new InputValidator();
-
             string email = EmailTextBox1.Text;
             string password = PasswordTextBox1.Text;
+            string confirmPassword = ConfirmPasswordTextBox.Text;
+            string name = NameTextBox.Text;
 
-
-            bool isEmailValid = validator.IsValidEmail(email);
-            bool isPasswordValid = validator.IsValidPassword(password);
-
-
-            if (isEmailValid && isPasswordValid)
+            // Проверка на пустые поля
+            if (string.IsNullOrWhiteSpace(email) || email == "Введите почту" ||
+                string.IsNullOrWhiteSpace(password) || password == "Введите пароль" ||
+                string.IsNullOrWhiteSpace(name) || name == "Введите имя" ||
+                string.IsNullOrWhiteSpace(confirmPassword) || confirmPassword == "Повторите пароль")
             {
-                Main_empty main_Empty = new Main_empty();
-                main_Empty.ShowDialog();
-
-
+                MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            else
+
+            // Проверка на валидность почты
+            if (!email.IsValidEmail())
             {
-                MessageBox.Show("Пожалуйста, проверьте введенные данные.");
+                MessageBox.Show("Неверный формат электронной почты.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+
+            // Проверка на валидность пароля
+            if (!password.IsValidPassword())
+            {
+                MessageBox.Show("Пароль должен содержать не менее 6 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Проверка на валидность имени
+            if (!name.IsValidName())
+            {
+                MessageBox.Show("Имя должно содержать не менее 3 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Проверка на совпадение паролей
+            if (!password.ArePasswordsMatching(confirmPassword))
+            {
+                MessageBox.Show("Пароли не совпадают.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Если все проверки прошли успешно, продолжаем
+            Main_empty main_Empty = new Main_empty();
+            main_Empty.ShowDialog();
         }
     }
 }

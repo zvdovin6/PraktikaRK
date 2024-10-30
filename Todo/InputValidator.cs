@@ -7,25 +7,27 @@ using System.Threading.Tasks;
 
 namespace Todo
 {
-    internal class InputValidator
+    public static class InputValidatorExtensions
     {
-        public bool IsValidEmail(string email)
+        public static bool IsValidEmail(this string email)
         {
-
             string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             return Regex.IsMatch(email, emailPattern);
         }
 
-
-        public bool IsValidPassword(string password)
+        public static bool IsValidPassword(this string password)
         {
             return password.Length >= 6;
         }
 
-
-        public bool IsValidName(string name)
+        public static bool IsValidName(this string name)
         {
             return name.Length >= 3;
+        }
+
+        public static bool ArePasswordsMatching(this string password, string confirmPassword)
+        {
+            return password == confirmPassword;
         }
     }
 }

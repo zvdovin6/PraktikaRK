@@ -74,27 +74,34 @@ namespace Todo
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var validator = new InputValidator();
-
             string email = EmailTextBox.Text;
             string password = PasswordTextBox.Text;
 
-
-            bool isEmailValid = validator.IsValidEmail(email);
-            bool isPasswordValid = validator.IsValidPassword(password);
-
-
-            if (isEmailValid && isPasswordValid)
+            // Проверка на пустые поля
+            if (string.IsNullOrWhiteSpace(email) || email == "Введите почту" ||
+                string.IsNullOrWhiteSpace(password) || password == "Введите пароль")
             {
-                Main_empty main_Empty = new Main_empty();
-                main_Empty.ShowDialog();
-
-
+                MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            else
+
+            // Проверка на валидность почты
+            if (!email.IsValidEmail())
             {
-                MessageBox.Show("Пожалуйста, проверьте введенные данные.");
+                MessageBox.Show("Неверный формат электронной почты.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+
+            // Проверка на валидность пароля
+            if (!password.IsValidPassword())
+            {
+                MessageBox.Show("Пароль должен содержать не менее 6 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Если все проверки прошли успешно, продолжаем
+            Main_empty main_Empty = new Main_empty();
+            main_Empty.ShowDialog();
         }
     }
 }
