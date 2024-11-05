@@ -62,6 +62,7 @@
     <Compile Include="Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Todo.Repository\UserRepository.cs" />
     <Page Include="Main empty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,6 +115,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Todo.Entities\Todo.Entities.csproj">
+      <Project>{9aaca786-4459-4cdf-92dc-ef5d081914cc}</Project>
+      <Name>Todo.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
