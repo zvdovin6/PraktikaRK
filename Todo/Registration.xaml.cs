@@ -157,28 +157,9 @@ namespace Todo
                 return;
             }
 
-            // Создаем нового пользователя
-            UserModel newUser = new UserModel
-            {
-                Email = email,
-                Password = password,
-                Name = name
-            };
-
-            // Регистрируем пользователя
-            bool registrationSuccessful = UserRepository.RegisterUser(newUser);
-
-            if (registrationSuccessful)
-            {
-                MessageBox.Show("Регистрация прошла успешно!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                Main_empty main_Empty = new Main_empty();
-                main_Empty.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Пользователь с таким email уже существует.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-
-            }
+            // Если все проверки прошли успешно, продолжаем
+            Main_empty main_Empty = new Main_empty();
+            main_Empty.ShowDialog();
         }
     }
 }
