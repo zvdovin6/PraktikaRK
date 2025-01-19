@@ -114,43 +114,63 @@ namespace Todo
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string email = EmailTextBox1.Text;
-            string password = PasswordTextBox1.Text;
-            string confirmPassword = ConfirmPasswordTextBox.Text;
-            string name = NameTextBox.Text;
+            string email = EmailTextBox1.Text.Trim();
+            string password = PasswordTextBox1.Text.Trim();
+            string confirmPassword = ConfirmPasswordTextBox.Text.Trim();
+            string name = NameTextBox.Text.Trim();
 
             // Проверка на пустые поля
-            if (string.IsNullOrWhiteSpace(email) || email == "Введите почту" ||
-                string.IsNullOrWhiteSpace(password) || password == "Введите пароль" ||
-                string.IsNullOrWhiteSpace(name) || name == "Введите имя" ||
-                string.IsNullOrWhiteSpace(confirmPassword) || confirmPassword == "Повторите пароль")
+            if ((string.IsNullOrWhiteSpace(email) || email == "Введите почту") &&
+                (string.IsNullOrWhiteSpace(password) || password == "Введите пароль") &&
+                (string.IsNullOrWhiteSpace(confirmPassword) || confirmPassword == "Повторите пароль") &&
+                (string.IsNullOrWhiteSpace(name) || name == "Введите имя"))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            // Проверка на валидность почты
-            if (!email.IsValidEmail())
+            // Проверка имени
+            if (string.IsNullOrWhiteSpace(name) || name == "Введите имя")
             {
-                MessageBox.Show("Неверный формат электронной почты.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Пожалуйста, введите имя.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
-            // Проверка на валидность пароля
-            if (!password.IsValidPassword())
-            {
-                MessageBox.Show("Пароль должен содержать не менее 6 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            // Проверка на валидность имени
             if (!name.IsValidName())
             {
                 MessageBox.Show("Имя должно содержать не менее 3 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            // Проверка на совпадение паролей
+            // Проверка электронной почты
+            if (string.IsNullOrWhiteSpace(email) || email == "Введите почту")
+            {
+                MessageBox.Show("Пожалуйста, введите электронную почту.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (!email.IsValidEmail())
+            {
+                MessageBox.Show("Неверный формат электронной почты.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Проверка пароля
+            if (string.IsNullOrWhiteSpace(password) || password == "Введите пароль")
+            {
+                MessageBox.Show("Пожалуйста, введите пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (!password.IsValidPassword())
+            {
+                MessageBox.Show("Пароль должен содержать не менее 6 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Проверка подтверждения пароля
+            if (string.IsNullOrWhiteSpace(confirmPassword) || confirmPassword == "Повторите пароль")
+            {
+                MessageBox.Show("Пожалуйста, подтвердите пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             if (!password.ArePasswordsMatching(confirmPassword))
             {
                 MessageBox.Show("Пароли не совпадают.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);

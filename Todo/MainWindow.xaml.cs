@@ -79,28 +79,6 @@ namespace Todo
             string email = EmailTextBox.Text;
             string password = PasswordTextBox.Text;
 
-            // Проверка на пустые поля
-            if (string.IsNullOrWhiteSpace(email) || email == "Введите почту" ||
-                string.IsNullOrWhiteSpace(password) || password == "Введите пароль")
-            {
-                MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            // Проверка на валидность почты
-            if (!email.IsValidEmail())
-            {
-                MessageBox.Show("Неверный формат электронной почты.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            // Проверка на валидность пароля
-            if (!password.IsValidPassword())
-            {
-                MessageBox.Show("Пароль должен содержать не менее 6 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             var user = UserRepository.Login(email, password);
 
             if (user == null)
