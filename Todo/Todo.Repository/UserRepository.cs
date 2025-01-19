@@ -9,25 +9,26 @@ namespace Todo.Repository
 {
     public static class UserRepository
     {
-        private static List<UserModel> _users = new List<UserModel>();
+        // Список зарегистрированных пользователей
+        private static readonly List<UserModel> Users = new List<UserModel>();
 
-        public static bool RegisterUser(UserModel user)
+        // Метод регистрации пользователя
+        public static string Register(UserModel user)
         {
             // Проверка на уникальность email
-            if (_users.Any(u => u.Email == user.Email))
+            if (Users.Any(u => u.Email == user.Email))
             {
-                return false; // Email уже зарегистрирован
+                return "Пользователь с таким email уже существует.";
             }
 
-            // Добавляем нового пользователя
-            _users.Add(user);
-            return true;
+            Users.Add(user);
+            return "Пользователь успешно зарегистрирован.";
         }
 
-        public static UserModel AuthenticateUser(string email, string password)
+        // Метод авторизации пользователя
+        public static UserModel Login(string email, string password)
         {
-            // Находим пользователя по email и паролю
-            return _users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            return Users.FirstOrDefault(u => u.Email == email && u.Password == password);
         }
     }
 }

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Todo.Entities;
+using Todo.Repository;
 
 
 namespace Todo
@@ -99,9 +101,19 @@ namespace Todo
                 return;
             }
 
-            // Если все проверки прошли успешно, продолжаем
-            Main_empty main_Empty = new Main_empty();
-            main_Empty.ShowDialog();
+            var user = UserRepository.Login(email, password);
+
+            if (user == null)
+            {
+                MessageBox.Show("Неверный email или пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                var mainEmpty = new Main_empty();
+                mainEmpty.Show();
+                this.Close();
+            }
         }
     }
 }
+

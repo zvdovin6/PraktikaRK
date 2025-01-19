@@ -157,9 +157,29 @@ namespace Todo
                 return;
             }
 
-            // Если все проверки прошли успешно, продолжаем
-            Main_empty main_Empty = new Main_empty();
-            main_Empty.ShowDialog();
+            var result = UserRepository.Register(new UserModel
+            {
+                Name = name,
+                Email = email,
+                Password = password
+            });
+
+            // Проверка на уникальность email
+            if (result.Contains("существует"))
+            {
+                MessageBox.Show(result, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // После успешной регистрации возвращаем данные в MainWindow
+            var mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.Show();
         }
+
     }
+
+
 }
+
+
