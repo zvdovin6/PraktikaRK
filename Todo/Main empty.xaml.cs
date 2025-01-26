@@ -26,7 +26,9 @@ namespace Todo
 
         private void Button_Click_SPZ(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            Main main = new Main();
+            main.Show();
         }
     }
 }

@@ -7,7 +7,102 @@
         mc:Ignorable="d"
         Title="Main" Height="600" Width="800">
     <Grid>
+        
         <Image HorizontalAlignment="Left" Height="76" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Source="/image.png"/>
+        <ListBox x:Name="taskListBox" SelectionChanged="taskListBox_SelectionChanged" Margin="158,133,323,34">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Column="0" VerticalAlignment="Center" Margin="5,0" IsChecked="{Binding IsCompleted}">
+                                <CheckBox.Style>
+                                    <Style TargetType="{x:Type CheckBox}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type CheckBox}">
+                                                    <Grid>
+                                                        <Ellipse x:Name="Ellipse" Fill="Transparent" Stroke="Blue" StrokeThickness="1" Width="15" Height="15" Margin="0,15,0,0"/>
+                                                        <Path x:Name="CheckMark" Data="M2,6 L7,11 L13,3" Stroke="White" StrokeThickness="2" Visibility="Collapsed" Margin="0,15,0,0"/>
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsChecked" Value="True">
+                                                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                                            <Setter TargetName="Ellipse" Property="Stroke" Value="#FFF96060" />
+                                                            <Setter TargetName="Ellipse" Property="Fill" Value="#FFF96060" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled" Value="False">
+                                                            <Setter TargetName="Ellipse" Property="Stroke" Value="LightGray" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </CheckBox.Style>
+                            </CheckBox>
+                            <TextBlock Grid.Column="1" Text="{Binding Title}" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="16"/>
+                        </Grid>
+                        <TextBlock Text="{Binding DueDate, StringFormat=\{0:dd.MM.yyyy\}}" Margin="35,0,0,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button BorderBrush="{x:Null}" Foreground="White" Content="+" FontSize="24" Margin="10,486,690,10">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="40, 40, 40, 40"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="156.318" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FFFFB6B6" Offset="1"/>
+                    <GradientStop Color="#FFED3939" Offset="0"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Label Content="Дом" HorizontalAlignment="Left" Margin="158,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF72D600"/>
+        <Label Content="Работа" HorizontalAlignment="Left" Margin="237,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FFFF5D00"/>
+        <Label Content="Учёба" HorizontalAlignment="Left" Margin="325,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF004AC3"/>
+        <Label Content="Отдых" HorizontalAlignment="Left" Margin="415,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FFB700FF"/>
+        <Label Content="История" HorizontalAlignment="Left" Margin="22,205,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
+        <Label Content="Задачи" HorizontalAlignment="Left" Margin="20,150,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
+        <StackPanel Margin="501,90,10,34">
+            <TextBlock x:Name="taskTitleTextBlock" FontSize="24" TextAlignment="Center" Margin="0,10,0,15"/>
+            <TextBlock x:Name="taskDueDateTextBlock" FontSize="16"/>
+            <TextBlock x:Name="taskDescriptionTextBlock" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <Button x:Name="okButton" Content="Готово" Visibility="Collapsed" Click="okButton_Click" Background="#FFED3939" Foreground= "White" >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="deleteButton" Content="Удалить" Visibility="Collapsed" Click="deleteButton_Click" Background="#FFED3939"  Foreground= "White" >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </StackPanel>
+        <TextBlock Text ="{Binding Name}" x:Name="username" HorizontalAlignment="Left" Margin="7,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Width="82"/>
 
     </Grid>
 </Window>
