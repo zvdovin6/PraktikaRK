@@ -44,6 +44,8 @@ namespace Todo
             LoadTasks();
             taskListBox.ItemsSource = tasks;
 
+            DataContext = this;
+
             if (Todo.Repository.UserRepository.CurrentUser != null)
             {
                 UserName = Todo.Repository.UserRepository.CurrentUser.Name;
@@ -54,8 +56,10 @@ namespace Todo
         {
             tasks = new ObservableCollection<TaskModel>
             {
-                new TaskModel { Title = "Задача 1", DueDate = DateTime.Now.AddDays(1), IsCompleted = false, Description = "Описание задачи 1" },
-                new TaskModel { Title = "Задача 2", DueDate = DateTime.Now.AddDays(2), IsCompleted = false, Description = "Описание задачи 2" }
+                new TaskModel { Title = "Задача 1", DueDate = DateTime.Now.AddDays(1), IsCompleted = false, Description = "Описание задачи" },
+                new TaskModel { Title = "Задача 2", DueDate = DateTime.Now.AddDays(2), IsCompleted = false, Description = "Описание задачи" },
+                new TaskModel { Title = "Задача 3", DueDate = DateTime.Now.AddDays(2), IsCompleted = false, Description = "Описание задачи" }
+
             };
         }
 

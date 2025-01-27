@@ -4,12 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Todo"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         mc:Ignorable="d"
         Title="Main" Height="600" Width="800">
     <Grid>
-        
+
         <Image HorizontalAlignment="Left" Height="76" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Source="/image.png"/>
-        <ListBox x:Name="taskListBox" SelectionChanged="taskListBox_SelectionChanged" Margin="158,133,323,34">
+        <ListBox x:Name="taskListBox"
+                 BorderThickness="0"
+                 SelectionChanged="taskListBox_SelectionChanged"
+                 Margin="158,115,323,34">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -18,14 +22,17 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <CheckBox Grid.Column="0" VerticalAlignment="Center" Margin="5,0" IsChecked="{Binding IsCompleted}">
+                            <CheckBox Grid.Column="0"
+                                      VerticalAlignment="Center"
+                                      Margin="5,0"
+                                      IsChecked="{Binding IsCompleted}">
                                 <CheckBox.Style>
                                     <Style TargetType="{x:Type CheckBox}">
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type CheckBox}">
                                                     <Grid>
-                                                        <Ellipse x:Name="Ellipse" Fill="Transparent" Stroke="Blue" StrokeThickness="1" Width="15" Height="15" Margin="0,15,0,0"/>
+                                                        <Ellipse x:Name="Ellipse" Fill="Transparent" Stroke="Blue" StrokeThickness="2" Width="15" Height="15" Margin="0,15,0,0"/>
                                                         <Path x:Name="CheckMark" Data="M2,6 L7,11 L13,3" Stroke="White" StrokeThickness="2" Visibility="Collapsed" Margin="0,15,0,0"/>
                                                     </Grid>
                                                     <ControlTemplate.Triggers>
@@ -51,7 +58,8 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button BorderBrush="{x:Null}" Foreground="White" Content="+" FontSize="24" Margin="10,486,690,10">
+        <Button BorderBrush="{x:Null}" Foreground="White" Content="+" FontSize="24"
+                Margin="10,502,715,10">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="40, 40, 40, 40"/>
@@ -78,23 +86,48 @@
         <Label Content="Отдых" HorizontalAlignment="Left" Margin="415,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FFB700FF"/>
         <Label Content="История" HorizontalAlignment="Left" Margin="22,205,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
         <Label Content="Задачи" HorizontalAlignment="Left" Margin="20,150,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
-        <StackPanel Margin="501,90,10,34">
+        <Border BorderBrush="Black"
+                BorderThickness="1"
+                HorizontalAlignment="Left"
+                Height="445"
+                Margin="501,105,10,34"
+                VerticalAlignment="Top"
+                Width="289">
+        </Border>
+        <StackPanel Margin="501,105,10,34">
             <TextBlock x:Name="taskTitleTextBlock" FontSize="24" TextAlignment="Center" Margin="0,10,0,15"/>
             <TextBlock x:Name="taskDueDateTextBlock" FontSize="16"/>
             <TextBlock x:Name="taskDescriptionTextBlock" TextWrapping="Wrap" Margin="0,10,0,0"/>
-            <Button x:Name="okButton" Content="Готово" Visibility="Collapsed" Click="okButton_Click" Background="#FFED3939" Foreground= "White" >
+            <Button x:Name="okButton"
+                    Content="Готово"
+                    Visibility="Collapsed"
+                    Click="okButton_Click"
+                    Background="#FFED3939"
+                    Foreground="White"
+                    Height="48"
+                    Width="254"
+                    Margin="0,175,0,0">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="20,20,0,0">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="deleteButton" Content="Удалить" Visibility="Collapsed" Click="deleteButton_Click" Background="#FFED3939"  Foreground= "White" >
+            <Button x:Name="deleteButton"
+                    Content="Удалить"
+                    Visibility="Collapsed"
+                    Click="deleteButton_Click"
+                    Background="#FFED3939"
+                    Foreground="White"
+                    Height="48"
+                    Width="254"
+                    Margin="0,5,0,0" >
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="0,0,20,20">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
@@ -102,7 +135,7 @@
             </Button>
 
         </StackPanel>
-        <TextBlock Text ="{Binding Name}" x:Name="username" HorizontalAlignment="Left" Margin="7,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Width="82"/>
-
+        <TextBlock Text="{Binding UserName}"
+                   x:Name="username" HorizontalAlignment="Left" Margin="7,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Width="82"/>
     </Grid>
 </Window>
