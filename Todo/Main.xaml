@@ -140,10 +140,11 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Label Content="Дом" HorizontalAlignment="Left" Margin="158,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF72D600"/>
-        <Label Content="Работа" HorizontalAlignment="Left" Margin="237,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FFFF5D00"/>
-        <Label Content="Учёба" HorizontalAlignment="Left" Margin="325,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF004AC3"/>
-        <Label Content="Отдых" HorizontalAlignment="Left" Margin="415,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FFB700FF"/>
+        <Label Content="Дом" Tag="Дом" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="158,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF72D600"/>
+        <Label Content="Работа" Tag="Работа" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="237,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFFF5D00"/>
+        <Label Content="Учёба" Tag="Учёба" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="325,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF004AC3"/>
+        <Label Content="Отдых" Tag="Отдых" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="415,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFB700FF"/>
+        
         <Label Content="История" HorizontalAlignment="Left"
                Margin="12,189,0,0"
                VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>

@@ -25,6 +25,8 @@ namespace Todo
     public partial class Main : Window, INotifyPropertyChanged
     {
         private string _username;
+        private ObservableCollection<TaskModel> _allTasks; // Все задачи
+        private ObservableCollection<TaskModel> _filteredTasks; // Отфильтрованные задачи
 
         public string UserName
         {
@@ -36,31 +38,60 @@ namespace Todo
             }
         }
 
-        public ObservableCollection<TaskModel> tasks { get; private set; }
+        public ObservableCollection<TaskModel> Tasks
+        {
+            get => _filteredTasks;
+            set
+            {
+                _filteredTasks = value;
+                OnPropertyChanged();
+            }
+        }
 
         public Main()
         {
             InitializeComponent();
             LoadTasks();
-            taskListBox.ItemsSource = tasks;
+            Tasks = new ObservableCollection<TaskModel>(_allTasks);
+            taskListBox.ItemsSource = Tasks;
 
             DataContext = this;
 
-            if (Todo.Repository.UserRepository.CurrentUser != null)
+            if (UserRepository.CurrentUser != null)
             {
-                UserName = Todo.Repository.UserRepository.CurrentUser.Name;
+                UserName = UserRepository.CurrentUser.Name;
             }
         }
 
         private void LoadTasks()
         {
-            tasks = new ObservableCollection<TaskModel>
-            {
-                new TaskModel { Title = "Задача 1", DueDate = DateTime.Now.AddDays(1), IsCompleted = false, Description = "Описание задачи" },
-                new TaskModel { Title = "Задача 2", DueDate = DateTime.Now.AddDays(2), IsCompleted = false, Description = "Описание задачи" },
-                new TaskModel { Title = "Задача 3", DueDate = DateTime.Now.AddDays(2), IsCompleted = false, Description = "Описание задачи" }
+            _allTasks = new ObservableCollection<TaskModel>
+        {
+            new TaskModel { Title = "Дом", DueDate = DateTime.Now.AddDays(1), IsCompleted = false, Description = "Убраться дома", Category = "Дом" },
+            new TaskModel { Title = "Работа", DueDate = DateTime.Now.AddDays(2), IsCompleted = false, Description = "Написать отчёт по проекту", Category = "Работа" },
+            new TaskModel { Title = "Учеба", DueDate = DateTime.Now.AddDays(3), IsCompleted = false, Description = "Повторить материал", Category = "Учёба" },
+            new TaskModel { Title = "Отдых", DueDate = DateTime.Now.AddDays(4), IsCompleted = false, Description = "Прогуляться вечером на улице", Category = "Отдых" }
+        };
 
-            };
+            Tasks = new ObservableCollection<TaskModel>(_allTasks);
+        }
+
+        private void FilterTasksByCategory(string category)
+        {
+            Tasks.Clear();
+
+            foreach (var task in _allTasks.Where(t => t.Category == category))
+            {
+                Tasks.Add(task);
+            }
+        }
+
+        private void CategoryLabel_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Label label && label.Tag is string category)
+            {
+                FilterTasksByCategory(category); // Фильтруем задачи
+            }
         }
 
         private void taskListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -68,17 +99,15 @@ namespace Todo
             if (taskListBox.SelectedItem is TaskModel selectedTask)
             {
                 taskTitleTextBlock.Text = selectedTask.Title;
-                taskDueDateTextBlock.Text = selectedTask.DueDate.ToString("HH:mm"); // Теперь отображает только время
+                taskDueDateTextBlock.Text = selectedTask.DueDate.ToString("HH:mm");
                 taskDescriptionTextBlock.Text = selectedTask.Description;
 
-                // Показываем детали задачи
                 taskDetailsBorder.Visibility = Visibility.Visible;
                 okButton.Visibility = Visibility.Visible;
                 deleteButton.Visibility = Visibility.Visible;
             }
             else
             {
-                // Скрываем детали задачи, если ничего не выбрано
                 taskDetailsBorder.Visibility = Visibility.Collapsed;
                 okButton.Visibility = Visibility.Collapsed;
                 deleteButton.Visibility = Visibility.Collapsed;
@@ -98,7 +127,8 @@ namespace Todo
         {
             if (taskListBox.SelectedItem is TaskModel selectedTask)
             {
-                tasks.Remove(selectedTask);
+                _allTasks.Remove(selectedTask);
+                Tasks.Remove(selectedTask);
                 ClearTaskDetails();
                 taskListBox.Items.Refresh();
             }
