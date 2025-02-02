@@ -11,38 +11,73 @@
 
         <Image HorizontalAlignment="Left" Height="76" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Source="/image.png"/>
         <ListBox x:Name="taskListBox"
-                 BorderThickness="0"
-                 SelectionChanged="taskListBox_SelectionChanged"
-                 Margin="158,115,323,34">
+         BorderThickness="0"
+         SelectionChanged="taskListBox_SelectionChanged"
+         Margin="158,115,323,34">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#DDE6F7FF"/>
+                            <!-- Светло-синий фон -->
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <Grid>
+                    <Border Margin="0,0,0,5">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Gray"
+                                      Direction="270"
+                                      BlurRadius="5"
+                                      ShadowDepth="3"
+                                      Opacity="0.5"/>
+                        </Border.Effect>
+                        <Grid Background="White"
+                      HorizontalAlignment="Stretch"
+                      MinHeight="70"
+                      MaxHeight="90"
+                      MinWidth="200"
+                      MaxWidth="300"
+                      Margin="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
+
+                            <!-- Кастомная галочка -->
                             <CheckBox Grid.Column="0"
-                                      VerticalAlignment="Center"
-                                      Margin="5,0"
-                                      IsChecked="{Binding IsCompleted}">
+                              VerticalAlignment="Center"
+                              Margin="10,0,5,0"
+                              IsChecked="{Binding IsCompleted}">
                                 <CheckBox.Style>
                                     <Style TargetType="{x:Type CheckBox}">
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type CheckBox}">
                                                     <Grid>
-                                                        <Ellipse x:Name="Ellipse" Fill="Transparent" Stroke="Blue" StrokeThickness="2" Width="15" Height="15" Margin="0,15,0,0"/>
-                                                        <Path x:Name="CheckMark" Data="M2,6 L7,11 L13,3" Stroke="White" StrokeThickness="2" Visibility="Collapsed" Margin="0,15,0,0"/>
+                                                        <Ellipse x:Name="Ellipse"
+                                                         Fill="Transparent"
+                                                         Stroke="Blue"
+                                                         StrokeThickness="2"
+                                                         Width="20"
+                                                         Height="20"/>
+                                                        <Path x:Name="CheckMark"
+                                                      Data="M2,6 L7,11 L13,3"
+                                                      Stroke="Blue"
+                                                      StrokeThickness="2"
+                                                      Visibility="Collapsed"/>
                                                     </Grid>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsChecked" Value="True">
                                                             <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
-                                                            <Setter TargetName="Ellipse" Property="Stroke" Value="#FFF96060" />
-                                                            <Setter TargetName="Ellipse" Property="Fill" Value="#FFF96060" />
-                                                        </Trigger>
-                                                        <Trigger Property="IsEnabled" Value="False">
-                                                            <Setter TargetName="Ellipse" Property="Stroke" Value="LightGray" />
+                                                            <Setter TargetName="Ellipse" Property="Stroke" Value="#FFF96060"/>
+                                                            <Setter TargetName="Ellipse" Property="Fill" Value="Transparent"/>
+                                                            <!-- Исправлено -->
                                                         </Trigger>
                                                     </ControlTemplate.Triggers>
                                                 </ControlTemplate>
@@ -51,10 +86,19 @@
                                     </Style>
                                 </CheckBox.Style>
                             </CheckBox>
-                            <TextBlock Grid.Column="1" Text="{Binding Title}" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="16"/>
+
+                            <!-- Текст задачи -->
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Title}"
+                                   FontSize="16"
+                                   Margin="5,0,0,2"/>
+                                <TextBlock Text="{Binding DueDate, StringFormat=\{0:HH:mm\}}"
+                                   FontSize="14"
+                                   Foreground="Gray"
+                                   Margin="5,0,0,0"/>
+                            </StackPanel>
                         </Grid>
-                        <TextBlock Text="{Binding DueDate, StringFormat=\{0:dd.MM.yyyy\}}" Margin="35,0,0,0"/>
-                    </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -84,8 +128,12 @@
         <Label Content="Работа" HorizontalAlignment="Left" Margin="237,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FFFF5D00"/>
         <Label Content="Учёба" HorizontalAlignment="Left" Margin="325,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF004AC3"/>
         <Label Content="Отдых" HorizontalAlignment="Left" Margin="415,66,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FFB700FF"/>
-        <Label Content="История" HorizontalAlignment="Left" Margin="22,205,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
-        <Label Content="Задачи" HorizontalAlignment="Left" Margin="20,150,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
+        <Label Content="История" HorizontalAlignment="Left"
+               Margin="12,189,0,0"
+               VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
+        <Label Content="Задачи" HorizontalAlignment="Left"
+               Margin="12,139,0,0"
+               VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
         <Border Margin="501,105,10,34" BorderBrush="Black" BorderThickness="1" CornerRadius="3">
             <Border.Effect>
                 <DropShadowEffect Color="Gray" Direction="270" BlurRadius="10" ShadowDepth="3" Opacity="0.7"/>
