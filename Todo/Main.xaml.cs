@@ -68,10 +68,20 @@ namespace Todo
             if (taskListBox.SelectedItem is TaskModel selectedTask)
             {
                 taskTitleTextBlock.Text = selectedTask.Title;
-                taskDueDateTextBlock.Text = selectedTask.DueDate.ToString("dd.MM.yyyy");
+                taskDueDateTextBlock.Text = selectedTask.DueDate.ToString("HH:mm"); // Теперь отображает только время
                 taskDescriptionTextBlock.Text = selectedTask.Description;
+
+                // Показываем детали задачи
+                taskDetailsBorder.Visibility = Visibility.Visible;
                 okButton.Visibility = Visibility.Visible;
                 deleteButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                // Скрываем детали задачи, если ничего не выбрано
+                taskDetailsBorder.Visibility = Visibility.Collapsed;
+                okButton.Visibility = Visibility.Collapsed;
+                deleteButton.Visibility = Visibility.Collapsed;
             }
         }
 
