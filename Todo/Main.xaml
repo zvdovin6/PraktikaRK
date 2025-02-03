@@ -38,9 +38,9 @@
                         <Border.Effect>
                             <DropShadowEffect Color="Gray"
                                       Direction="270"
-                                      BlurRadius="5"
+                                      BlurRadius="2"
                                       ShadowDepth="3"
-                                      Opacity="0.5"/>
+                                      Opacity="0.3"/>
                         </Border.Effect>
 
                         <!-- Подсветка внутри элемента -->
@@ -84,7 +84,13 @@
                                   Data="M2,6 L7,11 L13,3"
                                   Stroke="White"
                                   StrokeThickness="2"
-                                  Visibility="Collapsed"/>
+                                  Visibility="Collapsed" Stretch="Uniform"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center">
+                                                            <Path.RenderTransform>
+                                                                <TranslateTransform X="-1" Y="-1"/>
+                                                            </Path.RenderTransform>
+                                                        </Path>
                                                     </Grid>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsChecked" Value="True">
@@ -118,33 +124,31 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button BorderBrush="{x:Null}" Foreground="White" Content="+" FontSize="24"
-                Margin="7,504,715,10">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="40, 40, 40, 40"/>
-                </Style>
-            </Button.Resources>
+        <Button BorderBrush="{x:Null}"
+         Foreground="White"
+         Content="+"
+         FontSize="24" Height="56"
+         VerticalAlignment="Bottom"
+         Margin="20,0,0,34" HorizontalAlignment="Left" Width="56">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <LinearGradientBrush.RelativeTransform>
-                        <TransformGroup>
-                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                            <RotateTransform Angle="156.318" CenterX="0.5" CenterY="0.5"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </LinearGradientBrush.RelativeTransform>
                     <GradientStop Color="#FFFFB6B6" Offset="1"/>
                     <GradientStop Color="#FFED3939" Offset="0"/>
                 </LinearGradientBrush>
             </Button.Background>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="25">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
         <Label Content="Дом" Tag="Дом" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="158,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF72D600"/>
         <Label Content="Работа" Tag="Работа" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="237,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFFF5D00"/>
         <Label Content="Учёба" Tag="Учёба" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="325,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF004AC3"/>
         <Label Content="Отдых" Tag="Отдых" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="415,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFB700FF"/>
-        
+
         <Label Content="История" HorizontalAlignment="Left"
                Margin="12,189,0,0"
                VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
