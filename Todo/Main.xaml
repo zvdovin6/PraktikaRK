@@ -6,26 +6,27 @@
         xmlns:local="clr-namespace:Todo"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         mc:Ignorable="d"
-        Title="Main" Height="600" Width="800">
-    <Grid>
-
-        <Image HorizontalAlignment="Left" Height="76" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Source="/image.png"/>
+        Title="Main" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid  Width="835"
+          Height="616"  Margin="-23,0,-31,-31" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="404*" />
+            <ColumnDefinition Width="23*" />
+        </Grid.ColumnDefinitions>
+        <Image HorizontalAlignment="Left" Height="76" Margin="36,10,0,0" VerticalAlignment="Top" Width="75" Source="/image.png"/>
         <ListBox x:Name="taskListBox"
          BorderThickness="0"
          SelectionChanged="taskListBox_SelectionChanged"
-         Margin="158,115,323,34">
+         Margin="158,115,323,53" FontFamily="Actor">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="Padding" Value="0"/>
                     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                    <!-- Убираем рамку фокуса -->
                     <Setter Property="BorderThickness" Value="0"/>
-                    <!-- Убираем границы -->
                 </Style>
             </ListBox.ItemContainerStyle>
-
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Margin="0,0,0,5"
@@ -42,8 +43,6 @@
                                       ShadowDepth="3"
                                       Opacity="0.3"/>
                         </Border.Effect>
-
-                        <!-- Подсветка внутри элемента -->
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Background" Value="White"/>
@@ -54,7 +53,6 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-
                         <Grid HorizontalAlignment="Stretch"
                       MinHeight="70"
                       MaxHeight="90"
@@ -108,8 +106,6 @@
                                     </Style>
                                 </CheckBox.Style>
                             </CheckBox>
-
-                            <!-- Текст задачи -->
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Title}"
                                    FontSize="16"
@@ -129,7 +125,7 @@
          Content="+"
          FontSize="24" Height="56"
          VerticalAlignment="Bottom"
-         Margin="20,0,0,34" HorizontalAlignment="Left" Width="56">
+         Margin="49,0,0,74" HorizontalAlignment="Left" Width="56">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFFFB6B6" Offset="1"/>
@@ -138,29 +134,29 @@
             </Button.Background>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="25">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="40">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Content="Дом" Tag="Дом" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="158,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF72D600"/>
-        <Label Content="Работа" Tag="Работа" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="237,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFFF5D00"/>
-        <Label Content="Учёба" Tag="Учёба" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="325,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF004AC3"/>
-        <Label Content="Отдых" Tag="Отдых" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="415,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFB700FF"/>
+        <Label Content="Дом" Tag="Дом" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="158,62,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF72D600"/>
+        <Label Content="Работа" Tag="Работа" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="237,62,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFFF5D00"/>
+        <Label Content="Учёба" Tag="Учёба" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="325,62,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF004AC3"/>
+        <Label Content="Отдых" Tag="Отдых" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="405,62,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFB700FF"/>
 
         <Label Content="История" HorizontalAlignment="Left"
-               Margin="12,189,0,0"
+               Margin="29,164,0,0"
                VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
         <Label Content="Задачи" HorizontalAlignment="Left"
-               Margin="12,139,0,0"
+               Margin="36,125,0,0"
                VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
         <Border x:Name="taskDetailsBorder"
         Margin="501,105,10,34"
         BorderBrush="Black"
         BorderThickness="1"
         CornerRadius="3"
-        Visibility="Collapsed">
+        Visibility="Collapsed" VerticalAlignment="Top" Height="425" >
             <Border.Effect>
                 <DropShadowEffect Color="Gray" Direction="270" BlurRadius="10" ShadowDepth="3" Opacity="0.7"/>
             </Border.Effect>
@@ -206,6 +202,6 @@
             </StackPanel>
         </Border>
         <TextBlock Text="{Binding UserName}"
-                   x:Name="username" HorizontalAlignment="Left" Margin="7,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Width="82"/>
+                   x:Name="username" HorizontalAlignment="Left" Margin="29,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Width="82"/>
     </Grid>
 </Window>
