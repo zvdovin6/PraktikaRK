@@ -10,7 +10,22 @@ namespace Todo.Repository
     public static class UserRepository
     {
         // Список зарегистрированных пользователей
-        private static readonly List<UserModel> Users = new List<UserModel>();
+        private static readonly List<UserModel> Users = new List<UserModel>() {
+
+            new UserModel()
+            {
+                Name = "www",
+                Email ="w@w.com",
+                Password = "123456"
+
+
+
+            }
+        };
+
+
+        // Свойство для текущего пользователя
+        public static UserModel CurrentUser { get; set; }
 
         // Метод регистрации пользователя
         public static string Register(UserModel user)
@@ -28,7 +43,9 @@ namespace Todo.Repository
         // Метод авторизации пользователя
         public static UserModel Login(string email, string password)
         {
-            return Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            CurrentUser = Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            return CurrentUser;
         }
     }
 }
+
