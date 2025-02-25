@@ -78,23 +78,17 @@
                                      StrokeThickness="2"
                                      Width="20"
                                      Height="20"/>
-                                                        <Path x:Name="CheckMark"
-                                  Data="M2,6 L7,11 L13,3"
-                                  Stroke="White"
-                                  StrokeThickness="2"
-                                  Visibility="Collapsed" Stretch="Uniform"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center">
-                                                            <Path.RenderTransform>
-                                                                <TranslateTransform X="-1" Y="-1"/>
-                                                            </Path.RenderTransform>
-                                                        </Path>
+
+                                                        <Image x:Name="CheckImage"
+                                   Source="pack://application:,,,/Group 2.png"
+                                   Width="20"
+                                   Height="20"
+                                   Visibility="Collapsed"/>
                                                     </Grid>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsChecked" Value="True">
-                                                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
-                                                            <Setter TargetName="Ellipse" Property="Fill" Value="#F96060"/>
-                                                            <Setter TargetName="Ellipse" Property="Stroke" Value="#F96060"/>
+                                                            <Setter TargetName="CheckImage" Property="Visibility" Value="Visible"/>
+                                                            <Setter TargetName="Ellipse" Property="Visibility" Value="Collapsed"/>
                                                         </Trigger>
                                                         <Trigger Property="IsMouseOver" Value="True">
                                                             <Setter TargetName="Ellipse" Property="Stroke" Value="DodgerBlue"/>
@@ -105,6 +99,7 @@
                                         </Setter>
                                     </Style>
                                 </CheckBox.Style>
+
                             </CheckBox>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Title}"
