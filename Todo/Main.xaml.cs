@@ -28,6 +28,7 @@ namespace Todo
         private ObservableCollection<TaskModel> _allTasks; // Все задачи
         private ObservableCollection<TaskModel> _filteredTasks; // Отфильтрованные задачи
 
+
         public string UserName
         {
             get => _username;
@@ -101,6 +102,7 @@ namespace Todo
             {
                 taskTitleTextBlock.Text = selectedTask.Title;
                 taskDueDateTextBlock.Text = selectedTask.DueDate.ToString("HH:mm");
+                taskDateTextBlock.Text = selectedTask.DueDate.ToString("dd/MM/yyyy");
                 taskDescriptionTextBlock.Text = selectedTask.Description;
 
                 taskDetailsBorder.Visibility = Visibility.Visible;

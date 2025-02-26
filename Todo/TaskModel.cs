@@ -14,6 +14,7 @@ namespace Todo
         public string Description { get; set; }
         public string Category { get; set; }
         public string Time => DueDate.ToString("HH:mm");
+        public DateTime Date { get; set; }
     }
 }
 
