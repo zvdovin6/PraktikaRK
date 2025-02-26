@@ -17,7 +17,8 @@
         <ListBox x:Name="taskListBox"
          BorderThickness="0"
          SelectionChanged="taskListBox_SelectionChanged"
-         Margin="158,115,323,53" FontFamily="Actor">
+         Margin="158,115,323,53"
+         FontFamily="Actor">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -25,96 +26,97 @@
                     <Setter Property="Padding" Value="0"/>
                     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
                     <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Border x:Name="ItemBorder"
+                                Margin="0,0,0,5"
+                                CornerRadius="10"
+                                SnapsToDevicePixels="True"
+                                Background="White">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="Gray"
+                                                  Direction="270"
+                                                  BlurRadius="2"
+                                                  ShadowDepth="3"
+                                                  Opacity="0.3"/>
+                                    </Border.Effect>
+                                    <ContentPresenter/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="ItemBorder" Property="Background" Value="#DDE6F7FF"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
             </ListBox.ItemContainerStyle>
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border Margin="0,0,0,5"
-                    Background="White"
-                    CornerRadius="10"
-                    SnapsToDevicePixels="True">
-                        <Border.Clip>
-                            <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,0,300,90"/>
-                        </Border.Clip>
-                        <Border.Effect>
-                            <DropShadowEffect Color="Gray"
-                                      Direction="270"
-                                      BlurRadius="2"
-                                      ShadowDepth="3"
-                                      Opacity="0.3"/>
-                        </Border.Effect>
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="Background" Value="White"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#DDE6F7FF"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                        <Grid HorizontalAlignment="Stretch"
-                      MinHeight="70"
-                      MaxHeight="90"
-                      MinWidth="200"
-                      MaxWidth="300">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <CheckBox Grid.Column="0"
-          VerticalAlignment="Center"
-          Margin="10,0,5,0"
-          IsChecked="{Binding IsCompleted}">
-                                <CheckBox.Style>
-                                    <Style TargetType="{x:Type CheckBox}">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type CheckBox}">
-                                                    <Grid>
-                                                        <Ellipse x:Name="Ellipse"
-                                     Fill="Transparent"
-                                     Stroke="Blue"
-                                     StrokeThickness="2"
-                                     Width="20"
-                                     Height="20"/>
-
-                                                        <Image x:Name="CheckImage"
-                                   Source="pack://application:,,,/Group 2.png"
-                                   Width="20"
-                                   Height="20"
-                                   Visibility="Collapsed"/>
-                                                    </Grid>
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="IsChecked" Value="True">
-                                                            <Setter TargetName="CheckImage" Property="Visibility" Value="Visible"/>
-                                                            <Setter TargetName="Ellipse" Property="Visibility" Value="Collapsed"/>
-                                                        </Trigger>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter TargetName="Ellipse" Property="Stroke" Value="DodgerBlue"/>
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </CheckBox.Style>
-
-                            </CheckBox>
-                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Title}"
-                                   FontSize="16"
-                                   Margin="5,0,0,2"/>
-                                <TextBlock Text="{Binding DueDate, StringFormat=\{0:HH:mm\}}"
-                                   FontSize="14"
-                                   Foreground="Gray"
-                                   Margin="5,0,0,0"/>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
+                    <Grid HorizontalAlignment="Stretch"
+                  MinHeight="70"
+                  MaxHeight="90"
+                  MinWidth="200"
+                  MaxWidth="300">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Column="0"
+                          VerticalAlignment="Center"
+                          Margin="10,0,5,0"
+                          IsChecked="{Binding IsCompleted}">
+                            <CheckBox.Style>
+                                <Style TargetType="CheckBox">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="CheckBox">
+                                                <Grid>
+                                                    <Ellipse x:Name="Ellipse"
+                                                     Fill="Transparent"
+                                                     Stroke="Blue"
+                                                     StrokeThickness="2"
+                                                     Width="20"
+                                                     Height="20"/>
+                                                    <Image x:Name="CheckImage"
+                                                   Source="pack://application:,,,/Group 2.png"
+                                                   Width="20"
+                                                   Height="20"
+                                                   Visibility="Collapsed"/>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter TargetName="CheckImage" Property="Visibility" Value="Visible"/>
+                                                        <Setter TargetName="Ellipse" Property="Visibility" Value="Collapsed"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="Ellipse" Property="Stroke" Value="DodgerBlue"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </CheckBox.Style>
+                        </CheckBox>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Title}"
+                               FontSize="16"
+                               Margin="5,0,0,2"/>
+                            <TextBlock Text="{Binding DueDate, StringFormat=\{0:HH:mm\}}"
+                               FontSize="14"
+                               Foreground="Gray"
+                               Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
         <Button BorderBrush="{x:Null}"
          Foreground="White"
          Content="+"
