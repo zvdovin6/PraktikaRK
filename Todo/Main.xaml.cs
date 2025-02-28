@@ -25,8 +25,8 @@ namespace Todo
     public partial class Main : Window, INotifyPropertyChanged
     {
         private string _username;
-        private ObservableCollection<TaskModel> _allTasks; // Все задачи
-        private ObservableCollection<TaskModel> _filteredTasks; // Отфильтрованные задачи
+        private ObservableCollection<TaskModel> _allTasks; 
+        private ObservableCollection<TaskModel> _filteredTasks; 
 
 
         public string UserName
@@ -156,7 +156,8 @@ namespace Todo
         {
             var completedTasks = new ObservableCollection<TaskModel>(_allTasks.Where(t => t.IsCompleted));
             History historyWindow = new History(completedTasks);
-            historyWindow.Show();
+            historyWindow.ShowDialog();
+            this.Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -164,15 +165,16 @@ namespace Todo
             TaskCreation taskCreation = new TaskCreation();
             taskCreation.TaskCreated += TaskCreation_TaskCreated;
             taskCreation.Show();
+            this.Close();
 
 
         }
 
         private void TaskCreation_TaskCreated(object sender, TaskModel newTask)
         {
-            _allTasks.Add(newTask); // Добавляем в основной список
-            Tasks.Add(newTask);     // Добавляем в отображаемый список
-            taskListBox.Items.Refresh(); // Обновляем отображение
+            _allTasks.Add(newTask); 
+            Tasks.Add(newTask);     
+            taskListBox.Items.Refresh(); 
         }
 
 

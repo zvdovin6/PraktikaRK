@@ -50,7 +50,12 @@ namespace Todo
             }
 
         }
-
+        private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Main main = new Main(); 
+            main.Show(); 
+            this.Close(); 
+        }
 
         private void CategoryLabel_Click(object sender, MouseButtonEventArgs e)
         {

@@ -4,14 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Todo"
-        xmlns:converters="clr-namespace:Todo.Converters"
         mc:Ignorable="d"
         Title="History" Height="600" Width="800"  WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <converters:CompletedToColorConverter x:Key="CompletedToColorConverter"/>
-        <converters:CompletedToTextDecorationConverter x:Key="CompletedToTextDecorationConverter"/>
-    </Window.Resources>
-
     <Grid  Width="835"
        Height="616"  Margin="-23,0,-31,-31" >
         <Grid.ColumnDefinitions>
@@ -147,7 +141,7 @@
    Content="+"
    FontSize="24" Height="56"
    VerticalAlignment="Bottom"
-   Margin="49,0,0,74" HorizontalAlignment="Left" Width="56">
+   Margin="27,0,0,72" HorizontalAlignment="Left" Width="56">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFFFB6B6" Offset="1"/>
@@ -172,7 +166,7 @@
          VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
         <Label Content="Задачи" HorizontalAlignment="Left"
          Margin="36,125,0,0"
-         VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
+         VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"  MouseLeftButtonDown="Label_MouseLeftButtonDown" />
         <Border x:Name="taskDetailsBorder" 
 Margin="501,105,10,34"
 BorderBrush="Black"
