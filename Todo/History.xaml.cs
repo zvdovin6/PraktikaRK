@@ -31,6 +31,25 @@ namespace Todo
             InitializeComponent();
         }
 
+        private void historyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (historyListBox.SelectedItem is TaskModel selectedTask)
+            {
+                taskTitleTextBlock.Text = selectedTask.Title;
+                taskDueDateTextBlock.Text = selectedTask.DueDate.ToString("HH:mm");
+                taskDateTextBlock.Text = selectedTask.DueDate.ToString("dd/MM/yyyy");
+                taskDescriptionTextBlock.Text = selectedTask.Description;
+
+                taskDetailsBorder.Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                taskDetailsBorder.Visibility = Visibility.Collapsed;
+
+            }
+
+        }
 
 
         private void CategoryLabel_Click(object sender, MouseButtonEventArgs e)
