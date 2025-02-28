@@ -18,14 +18,14 @@
         <Border BorderThickness="1" HorizontalAlignment="Left" Height="59" Margin="418,444,0,0" VerticalAlignment="Top" Width="322" Background="#FFE04321" CornerRadius="15,15,15,15">
             <Button x:Name="Abolition_Button" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Center" Height="59" Width="270" Background="#FFE04321" BorderBrush="{x:Null}" Margin="33,0,0,0" Foreground="White" FontSize="18" Click="Abolition_Button_Click"/>
         </Border>
-        <TextBox x:Name="DescriptionTask" HorizontalAlignment="Left" Margin="29,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="342" Height="104" Background="#FFFFFEFE" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="{x:Null}" >
+        <TextBox x:Name="DescriptionTask" HorizontalAlignment="Left" Margin="29,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="342" Height="104" Background="#FFFFFEFE" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="{x:Null}" Padding="10,5,10,5" >
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <TextBox x:Name="NameTask" HorizontalAlignment="Left" Margin="29,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="342" Height="61" BorderBrush="{x:Null}" Background="#FFFFFEFE" >
+        <TextBox x:Name="NameTask" HorizontalAlignment="Left" Margin="29,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="342" Height="61" BorderBrush="{x:Null}" Background="#FFFFFEFE" Padding="10,5,10,5" >
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>

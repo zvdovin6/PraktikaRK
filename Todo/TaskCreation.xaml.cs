@@ -102,7 +102,9 @@ namespace Todo
         {
             InitializeComponent();
             LoadCategories();
-            DataContext = this; // Устанавливаем контекст данных
+            DataContext = this;
+
+       
         }
 
         private void LoadCategories()
