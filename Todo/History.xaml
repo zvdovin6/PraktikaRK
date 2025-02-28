@@ -104,7 +104,7 @@
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBlock Text="{Binding Title}"
                          FontSize="16"
-                         Margin="5,0,0,2" FontFamily="Actor" >
+                         Margin="5,0,0,2" FontFamily="Actor" FontWeight="Light" >
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextDecorations" Value="None"/>
@@ -119,7 +119,7 @@
                             <TextBlock Text="{Binding DueDate, StringFormat=\{0:HH:mm\}}"
                          FontSize="14"
                          Foreground="Gray"
-                         Margin="5,0,0,0" FontFamily="Actor" >
+                         Margin="5,0,0,0" FontFamily="Actor" FontWeight="Light" >
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextDecorations" Value="None"/>
@@ -141,7 +141,7 @@
    Content="+"
    FontSize="24" Height="56"
    VerticalAlignment="Bottom"
-   Margin="27,0,0,72" HorizontalAlignment="Left" Width="56">
+   Margin="36,0,0,72" HorizontalAlignment="Left" Width="56">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFFFB6B6" Offset="1"/>
@@ -177,10 +177,10 @@ Visibility="Collapsed" VerticalAlignment="Top" Height="425" >
                     <DropShadowEffect Color="Gray" Direction="270" BlurRadius="10" ShadowDepth="3" Opacity="0.7"/>
                 </Border.Effect>
                 <StackPanel Background="White">
-                    <TextBlock x:Name="taskTitleTextBlock" FontSize="24" TextAlignment="Center" Margin="0,10,0,15" Text="{Binding Title}" FontFamily="Actor"/>
-                    <TextBlock x:Name="taskDueDateTextBlock" FontSize="16" TextAlignment="Left"  Text="{Binding DueDate, StringFormat=\{0:HH:mm\}}" Margin="10,0,10,0" FontFamily="Actor" />
-                    <TextBlock x:Name="taskDateTextBlock" FontSize="16" TextAlignment="Left"  Text="{Binding DueDate, StringFormat=\{0:yyyy-MM-dd\}}" Margin="10,0,10,0" FontFamily="Actor"/>
-                    <TextBlock x:Name="taskDescriptionTextBlock" TextWrapping="Wrap" Margin="10,10,10,0" FontSize="16" Text="{Binding Description}" FontFamily="Actor"/>
+                <TextBlock x:Name="taskTitleTextBlock" FontSize="24" TextAlignment="Center" Margin="0,10,0,15" Text="{Binding Title}" FontFamily="Actor"  FontWeight="Light" />
+                <TextBlock x:Name="taskDueDateTextBlock" FontSize="16" TextAlignment="Left"  Text="{Binding DueDate, StringFormat=\{0:HH:mm\}}" Margin="10,0,10,0" FontFamily="Actor"  FontWeight="Light"  />
+                <TextBlock x:Name="taskDateTextBlock" FontSize="16" TextAlignment="Left"  Text="{Binding DueDate, StringFormat=\{0:yyyy-MM-dd\}}" Margin="10,0,10,0" FontFamily="Actor" FontWeight="Light" />
+                <TextBlock x:Name="taskDescriptionTextBlock" TextWrapping="Wrap" Margin="10,10,10,0" FontSize="16" Text="{Binding Description}" FontFamily="Actor" FontWeight="Light" />
                 </StackPanel>
             </Border>
         
