@@ -113,6 +113,14 @@ namespace Todo
                 Categories.Add(category);
             }
         }
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (CategoryComboBox != null)
+            {
+                CategoryComboBox.IsDropDownOpen = !CategoryComboBox.IsDropDownOpen;
+                e.Handled = true;
+            }
+        }
 
         private void ValidateAndSetTime()
         {

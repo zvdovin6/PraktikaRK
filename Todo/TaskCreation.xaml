@@ -36,12 +36,12 @@
         <Label Content="Категория" HorizontalAlignment="Left" Margin="43,153,0,0" VerticalAlignment="Top" FontSize="18" Height="34" Width="94"/>
         <Label Content="Название" HorizontalAlignment="Left" Margin="43,40,0,0" VerticalAlignment="Top" FontSize="18" Height="34" Width="89"/>
         <ComboBox x:Name="CategoryComboBox"
-          Width="342" Height="42"
-          HorizontalAlignment="Left" VerticalAlignment="Top"
-          Background="#FFFEFE" BorderBrush="{x:Null}"
-          ItemsSource="{Binding Categories}"
-          SelectedItem="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-          IsEditable="False" Margin="29,185,0,0">
+  Width="342" Height="42"
+  HorizontalAlignment="Left" VerticalAlignment="Top"
+  Background="#FFFEFE" BorderBrush="{x:Null}"
+  ItemsSource="{Binding Categories}"
+  SelectedItem="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+  IsEditable="False" Margin="29,185,0,0">
 
             <ComboBox.Style>
                 <Style TargetType="ComboBox">
@@ -49,46 +49,51 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="ComboBox">
                                 <Grid>
-                                    <!-- Основная рамка ComboBox -->
                                     <Border x:Name="Border"
                                     Background="{TemplateBinding Background}"
                                     CornerRadius="15"
                                     BorderBrush="Gray"
-                                    BorderThickness="0">
+                                    BorderThickness="0"
+                                    PreviewMouseDown="Border_MouseDown">
                                         <Grid>
                                             <ContentPresenter x:Name="ContentPresenter"
-                                                      Content="{TemplateBinding SelectionBoxItem}"
-                                                      HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"
-                                                      Margin="10,0,30,0"/>
-                                            <!-- Кнопка открытия списка -->
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Margin="10,0,30,0"/>
                                             <ToggleButton x:Name="ToggleButton"
-                                                  IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                                  Focusable="False"
-                                                  ClickMode="Press"
-                                                  Background="Transparent"
-                                                  BorderBrush="{x:Null}"
-                                                  HorizontalAlignment="Right"
-                                                  VerticalAlignment="Center"
-                                                  Width="25" Height="25">
-                                                <Grid Width="8" Height="8">
-                                                    <Path Fill="Black" Data="M 0 0 L 4 4 L 8 0 Z"/>
-                                                </Grid>
+                                          IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                          Focusable="False"
+                                          ClickMode="Press"
+                                          Background="Transparent"
+                                          BorderBrush="{x:Null}"
+                                          FocusVisualStyle="{x:Null}" 
+                                          OverridesDefaultStyle="True"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Width="25" Height="25">
+                                                <ToggleButton.Template>
+                                                    <ControlTemplate TargetType="ToggleButton">
+                                                        <Grid Width="25" Height="25">
+                                                            <Path Fill="Black" Data="M 0 0 L 4 4 L 8 0 Z" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                    </ControlTemplate>
+                                                </ToggleButton.Template>
                                             </ToggleButton>
                                         </Grid>
                                     </Border>
-                                    <!-- Выпадающий список -->
                                     <Popup x:Name="Popup"
-                                   Placement="Bottom"
-                                   PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
-                                   IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
-                                   AllowsTransparency="True"
-                                   PopupAnimation="Slide">
+                           Placement="Bottom"
+                           PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                           IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                           AllowsTransparency="True"
+                           PopupAnimation="Slide">
                                         <Border Background="White"
-                                        CornerRadius="10"
-                                        BorderBrush="Gray"
-                                        BorderThickness="1"
-                                        MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}">
+                                CornerRadius="10"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}">
+
                                             <ScrollViewer>
                                                 <StackPanel IsItemsHost="True"/>
                                             </ScrollViewer>
@@ -100,42 +105,7 @@
                     </Setter>
                 </Style>
             </ComboBox.Style>
-
-            <!-- Стиль элементов списка -->
-            <ComboBox.ItemContainerStyle>
-                <Style TargetType="ComboBoxItem">
-                    <Setter Property="Background" Value="White"/>
-                    <Setter Property="Foreground" Value="Black"/>
-                    <Setter Property="Padding" Value="10"/>
-                    <Setter Property="Margin" Value="2"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ComboBoxItem">
-                                <Border Background="{TemplateBinding Background}"
-                                CornerRadius="10"
-                                Padding="5">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="#E0E0E0"/>
-                            <Setter Property="Foreground" Value="Black"/>
-                            <Setter Property="FontWeight" Value="Bold"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#C0C0C0"/>
-                            <Setter Property="Foreground" Value="White"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </ComboBox.ItemContainerStyle>
-
         </ComboBox>
-
 
         <DatePicker x:Name="taskDataPicker" HorizontalAlignment="Left" Margin="433,72,0,0" VerticalAlignment="Top" Height="204" Width="300"  SelectedDate="{Binding TaskDate, Mode=TwoWay}" BorderBrush="{x:Null}" />
         <xctk:MaskedTextBox x:Name="TimeMaskedTextBox"

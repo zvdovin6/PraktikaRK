@@ -68,10 +68,7 @@ namespace Todo
         {
             _allTasks = new ObservableCollection<TaskModel>
         {
-            new TaskModel { Title = "Дом", DueDate = DateTime.Now.AddDays(1), IsCompleted = false, Description = "Убраться дома", Category = "Дом" },
-            new TaskModel { Title = "Работа", DueDate = DateTime.Now.AddDays(2), IsCompleted = false, Description = "Написать отчёт по проекту", Category = "Работа" },
-            new TaskModel { Title = "Учеба", DueDate = DateTime.Now.AddDays(3), IsCompleted = false, Description = "Повторить материал", Category = "Учёба" },
-            new TaskModel { Title = "Отдых", DueDate = DateTime.Now.AddDays(4), IsCompleted = false, Description = "Прогуляться вечером на улице", Category = "Отдых" }
+
         };
 
             Tasks = new ObservableCollection<TaskModel>(_allTasks);
@@ -165,7 +162,6 @@ namespace Todo
             TaskCreation taskCreation = new TaskCreation();
             taskCreation.TaskCreated += TaskCreation_TaskCreated;
             taskCreation.Show();
-            this.Close();
 
 
         }
