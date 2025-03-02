@@ -173,6 +173,15 @@ namespace Todo
             taskListBox.Items.Refresh(); 
         }
 
+        private void ShowAllTasks(object sender, MouseButtonEventArgs e)
+        {
+            Tasks.Clear();
+
+            foreach (var task in _allTasks)
+            {
+                Tasks.Add(task);
+            }
+        }
 
 
 

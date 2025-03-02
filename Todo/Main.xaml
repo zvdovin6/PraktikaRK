@@ -171,7 +171,7 @@
                VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
         <Label Content="Задачи" HorizontalAlignment="Left"
                Margin="36,125,0,0"
-               VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
+               VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600" MouseDown="ShowAllTasks"/>
         <Border x:Name="taskDetailsBorder" 
   Margin="501,105,10,34"
   BorderBrush="Black"
