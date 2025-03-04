@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using Todo.Entities;
 using Todo.Repository;
 
+
 namespace Todo
 {
     /// <summary>
@@ -52,7 +53,7 @@ namespace Todo
         public Main()
         {
             InitializeComponent();
-            LoadTasks();
+            _allTasks = TaskManager.Instance.AllTasks;  
             Tasks = new ObservableCollection<TaskModel>(_allTasks);
             taskListBox.ItemsSource = Tasks;
 
@@ -64,15 +65,7 @@ namespace Todo
             }
         }
 
-        private void LoadTasks()
-        {
-            _allTasks = new ObservableCollection<TaskModel>
-        {
-
-        };
-
-            Tasks = new ObservableCollection<TaskModel>(_allTasks);
-        }
+      
 
         private void FilterTasksByCategory(string category)
         {
@@ -118,7 +111,8 @@ namespace Todo
         {
             if (taskListBox.SelectedItem is TaskModel selectedTask)
             {
-                selectedTask.IsCompleted = true;
+                TaskManager.Instance.CompleteTask(selectedTask);
+                Tasks.Remove(selectedTask); // Обновляем UI
                 taskListBox.Items.Refresh();
             }
         }
@@ -152,9 +146,11 @@ namespace Todo
         private void OpenHistoryWindow(object sender, MouseButtonEventArgs e)
         {
             var completedTasks = new ObservableCollection<TaskModel>(_allTasks.Where(t => t.IsCompleted));
-            History historyWindow = new History(completedTasks);
-            historyWindow.ShowDialog();
+            History historyWindow = new History();
+            historyWindow.ShowDialog(); ;
             this.Close();
+
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -168,6 +164,8 @@ namespace Todo
 
         private void TaskCreation_TaskCreated(object sender, TaskModel newTask)
         {
+
+            TaskManager.Instance.SaveTask(newTask);
             _allTasks.Add(newTask); 
             Tasks.Add(newTask);     
             taskListBox.Items.Refresh(); 

@@ -24,10 +24,10 @@ namespace Todo
         private ObservableCollection<TaskModel> _allCompletedTasks; // Все завершенные задачи
         private ObservableCollection<TaskModel> _filteredTasks; // Отфильтрованные задачи
 
-        public History(ObservableCollection<TaskModel> completedTasks)
+        public History()
         {
             InitializeComponent();
-            _allCompletedTasks = completedTasks ?? new ObservableCollection<TaskModel>();
+            _allCompletedTasks = TaskManager.Instance.CompletedTasks;
             _filteredTasks = new ObservableCollection<TaskModel>(_allCompletedTasks);
             historyListBox.ItemsSource = _filteredTasks;
         }
@@ -44,6 +44,17 @@ namespace Todo
                 }
             }
         }
+
+        public void RefreshTasks()
+        {
+            _filteredTasks.Clear();
+            foreach (var task in TaskManager.Instance.CompletedTasks)
+            {
+                _filteredTasks.Add(task);
+            }
+            historyListBox.Items.Refresh();
+        }
+
 
         // Показать все завершенные задачи
         private void historyShowAllTasks(object sender, MouseButtonEventArgs e)
