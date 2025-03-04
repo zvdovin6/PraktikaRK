@@ -86,7 +86,6 @@
     <Compile Include="TaskCreation.xaml.cs">
       <DependentUpon>TaskCreation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TaskModel.cs" />
     <Compile Include="Todo.Repository\UserRepository.cs" />
     <Page Include="History.xaml">
       <SubType>Designer</SubType>
