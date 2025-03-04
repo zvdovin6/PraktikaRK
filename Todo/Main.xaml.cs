@@ -59,13 +59,23 @@ namespace Todo
 
             DataContext = this;
 
+            TaskManager.Instance.TasksUpdated += RefreshTasks;
+
             if (UserRepository.CurrentUser != null)
             {
                 UserName = UserRepository.CurrentUser.Name;
             }
         }
 
-      
+        private void RefreshTasks()
+        {
+            // Перезагружаем список задач
+            Tasks.Clear();
+            foreach (var task in TaskManager.Instance.AllTasks)
+            {
+                Tasks.Add(task);
+            }
+        }
 
         private void FilterTasksByCategory(string category)
         {
@@ -111,11 +121,17 @@ namespace Todo
         {
             if (taskListBox.SelectedItem is TaskModel selectedTask)
             {
+                // Удаляем задачу из отображаемого списка
+                Tasks.Remove(selectedTask);
+
+                // Удаляем задачу из общего списка всех задач
                 TaskManager.Instance.CompleteTask(selectedTask);
-                Tasks.Remove(selectedTask); // Обновляем UI
+
+                // Обновляем отображение списка задач
                 taskListBox.Items.Refresh();
             }
         }
+
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -145,12 +161,9 @@ namespace Todo
 
         private void OpenHistoryWindow(object sender, MouseButtonEventArgs e)
         {
-            var completedTasks = new ObservableCollection<TaskModel>(_allTasks.Where(t => t.IsCompleted));
             History historyWindow = new History();
-            historyWindow.ShowDialog(); ;
-            this.Close();
+            historyWindow.ShowDialog();
 
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -165,10 +178,9 @@ namespace Todo
         private void TaskCreation_TaskCreated(object sender, TaskModel newTask)
         {
 
-            TaskManager.Instance.SaveTask(newTask);
-            _allTasks.Add(newTask); 
-            Tasks.Add(newTask);     
-            taskListBox.Items.Refresh(); 
+            TaskManager.Instance.SaveTask(newTask);  // Добавляем задачу в общий список
+            Tasks.Add(newTask);  // Добавляем в отображаемый список
+            taskListBox.Items.Refresh();  // Обновляем отображение
         }
 
         private void ShowAllTasks(object sender, MouseButtonEventArgs e)

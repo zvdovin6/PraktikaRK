@@ -47,12 +47,12 @@ namespace Todo
 
         public void RefreshTasks()
         {
-            _filteredTasks.Clear();
+            _filteredTasks.Clear(); // Очистить фильтрованные задачи
             foreach (var task in TaskManager.Instance.CompletedTasks)
             {
-                _filteredTasks.Add(task);
+                _filteredTasks.Add(task); // Добавить все завершенные задачи
             }
-            historyListBox.Items.Refresh();
+            historyListBox.Items.Refresh();  // Обновляем отображение
         }
 
 
