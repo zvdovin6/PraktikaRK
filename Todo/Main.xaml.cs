@@ -27,7 +27,8 @@ namespace Todo
     {
         private string _username;
         private ObservableCollection<TaskModel> _allTasks; 
-        private ObservableCollection<TaskModel> _filteredTasks; 
+        private ObservableCollection<TaskModel> _filteredTasks;
+        private ObservableCollection<TaskModel> _allCompletedTasks;
 
 
         public string UserName
@@ -52,14 +53,18 @@ namespace Todo
 
         public Main()
         {
+
+
             InitializeComponent();
-            _allTasks = TaskManager.Instance.AllTasks;  
+
+            TaskManager.Instance.TasksUpdated += RefreshTasks;
+
+            _allTasks = TaskManager.Instance.AllTasks;
+            _allCompletedTasks = TaskManager.Instance.CompletedTasks;
             Tasks = new ObservableCollection<TaskModel>(_allTasks);
             taskListBox.ItemsSource = Tasks;
 
             DataContext = this;
-
-            TaskManager.Instance.TasksUpdated += RefreshTasks;
 
             if (UserRepository.CurrentUser != null)
             {
@@ -69,12 +74,29 @@ namespace Todo
 
         private void RefreshTasks()
         {
-            // Перезагружаем список задач
+            // Очищаем текущий список задач
             Tasks.Clear();
-            foreach (var task in TaskManager.Instance.AllTasks)
+
+            // В зависимости от текущего контекста обновляем список задач
+            if (Tasks == _allCompletedTasks)
             {
-                Tasks.Add(task);
+                // Если отображаются выполненные задачи, обновляем их
+                foreach (var task in TaskManager.Instance.CompletedTasks)
+                {
+                    Tasks.Add(task);
+                }
             }
+            else
+            {
+                // Иначе обновляем все задачи
+                foreach (var task in TaskManager.Instance.AllTasks)
+                {
+                    Tasks.Add(task);
+                }
+            }
+
+            // Обновляем отображение списка задач
+            taskListBox.Items.Refresh();
         }
 
         private void FilterTasksByCategory(string category)
@@ -108,6 +130,9 @@ namespace Todo
                 taskDetailsBorder.Visibility = Visibility.Visible;
                 okButton.Visibility = Visibility.Visible;
                 deleteButton.Visibility = Visibility.Visible;
+
+                UpdateUIForTask(selectedTask);
+
             }
             else
             {
@@ -116,6 +141,46 @@ namespace Todo
                 deleteButton.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void UpdateUIForTask(TaskModel task)
+        {
+            if (task.IsCompleted)
+            {
+                // Если задача выполнена, скрываем элементы
+                okButton.Visibility = Visibility.Collapsed;
+                deleteButton.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                // Если задача активна, показываем элементы
+                taskDetailsBorder.Visibility = Visibility.Visible;
+                okButton.Visibility = Visibility.Visible;
+                deleteButton.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void CheckBoxTask_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox checkBox && checkBox.DataContext is TaskModel selectedTask)
+            {
+                Tasks.Remove(selectedTask);
+                TaskManager.Instance.CompleteTask(selectedTask);
+                taskListBox.Items.Refresh();
+
+                UpdateUIForTask(selectedTask);
+            }
+        }
+
+        private void CheckBoxTask_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox checkBox && checkBox.DataContext is TaskModel selectedTask)
+            {
+                TaskManager.Instance.UncompleteTask(selectedTask);
+
+                UpdateUIForTask(selectedTask);
+            }
+        }
+
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
@@ -129,9 +194,10 @@ namespace Todo
 
                 // Обновляем отображение списка задач
                 taskListBox.Items.Refresh();
+
+                UpdateUIForTask(selectedTask);
             }
         }
-
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -140,6 +206,7 @@ namespace Todo
                 _allTasks.Remove(selectedTask);
                 Tasks.Remove(selectedTask);
                 ClearTaskDetails();
+                UpdateUIForTask(selectedTask);
                 taskListBox.Items.Refresh();
             }
         }
@@ -161,8 +228,11 @@ namespace Todo
 
         private void OpenHistoryWindow(object sender, MouseButtonEventArgs e)
         {
-            History historyWindow = new History();
-            historyWindow.ShowDialog();
+            _filteredTasks.Clear();
+            foreach (var task in _allCompletedTasks)
+            {
+                _filteredTasks.Add(task);
+            }
 
         }
 

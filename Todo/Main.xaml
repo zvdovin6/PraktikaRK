@@ -68,10 +68,11 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Grid.Column="0"
+                        <CheckBox Name="CheckBoxTask" Grid.Column="0"
                           VerticalAlignment="Center"
                           Margin="10,0,5,0"
-                          IsChecked="{Binding IsCompleted}">
+                          IsChecked="{Binding IsCompleted}"  Checked="CheckBoxTask_Checked"
+                            Unchecked="CheckBoxTask_Unchecked" >
                             <CheckBox.Style>
                                 <Style TargetType="CheckBox">
                                     <Setter Property="Template">
@@ -148,8 +149,7 @@
          VerticalAlignment="Top" HorizontalAlignment="Left" Width="56" Click="Button_Click" Margin="37,490,0,0">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFFFB6B6" Offset="1"/>
-                    <GradientStop Color="#FFED3939" Offset="0"/>
+                    <GradientStop Color="#F96060" Offset="0"/>
                 </LinearGradientBrush>
             </Button.Background>
             <Button.Template>
