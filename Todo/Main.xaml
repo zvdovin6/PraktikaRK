@@ -7,149 +7,51 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         mc:Ignorable="d"
         Title="Main" Height="600" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid  Width="835"
-          Height="616"  Margin="-23,0,-31,-31" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourceDictionary/ResourcesTextBox.xaml"/>
+                <ResourceDictionary Source="ResourceDictionary/ResourcesButtons.xaml"/>
+                <ResourceDictionary Source="ResourceDictionary/ResourcesOtherStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid  Width="835" Height="616"  Margin="-23,0,-31,-31" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="404*" />
             <ColumnDefinition Width="23*" />
         </Grid.ColumnDefinitions>
         <Image HorizontalAlignment="Left" Height="76" Margin="36,10,0,0" VerticalAlignment="Top" Width="75" Source="/image.png"/>
-        <ListBox x:Name="taskListBox"
-         BorderThickness="0"
-         SelectionChanged="taskListBox_SelectionChanged"
-         FontFamily="Actor" Width="343" Height="456" HorizontalAlignment="Left" Margin="115,111,115,111">
+        <ListBox x:Name="taskListBox" BorderThickness="0" SelectionChanged="taskListBox_SelectionChanged" FontFamily="Actor" Width="343" Height="456" HorizontalAlignment="Left" Margin="115,111,115,111">
             <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="Padding" Value="0"/>
-                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                    <Setter Property="BorderThickness" Value="0"/>
-                    <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ListBoxItem">
-                                <Border x:Name="ItemBorder"
-                                Margin="0,0,0,5"
-                                CornerRadius="10"
-                                SnapsToDevicePixels="True"
-                                Background="White">
-                                    <Border.Effect>
-                                        <DropShadowEffect Color="Gray"
-                                                  Direction="270"
-                                                  BlurRadius="2"
-                                                  ShadowDepth="3"
-                                                  Opacity="0.3"/>
-                                    </Border.Effect>
-                                    <ContentPresenter/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="ItemBorder" Property="Background" Value="#DDE6F7FF"/>
-                                    </Trigger>
-                                    <DataTrigger Binding="{Binding IsCompleted}" Value="True">
-                                        <Setter TargetName="ItemBorder" Property="Background" Value="#E7FFED"/>
-                                    </DataTrigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource TaskListBoxItemStyle}"/>
             </ListBox.ItemContainerStyle>
-
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Stretch"
-                  MinHeight="70"
-                  MaxHeight="90"
-                  MinWidth="200"
-                  MaxWidth="300">
+                    <Grid HorizontalAlignment="Stretch" MinHeight="70" MaxHeight="90" MinWidth="200" MaxWidth="300">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Grid.Column="0"
-                          VerticalAlignment="Center"
-                          Margin="10,0,5,0"
-                          IsChecked="{Binding IsCompleted}">
+                        <CheckBox Grid.Column="0" VerticalAlignment="Center"  Margin="10,0,5,0" IsChecked="{Binding IsCompleted}" Checked="CheckBoxTask_Checked"  Unchecked="CheckBoxTask_Unchecked">
                             <CheckBox.Style>
-                                <Style TargetType="CheckBox">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="CheckBox">
-                                                <Grid>
-                                                    <Ellipse x:Name="Ellipse"
-                                                     Fill="Transparent"
-                                                     Stroke="Blue"
-                                                     StrokeThickness="2"
-                                                     Width="20"
-                                                     Height="20"/>
-                                                    <Image x:Name="CheckImage"
-                                                   Source="pack://application:,,,/Group 2.png"
-                                                   Width="20"
-                                                   Height="20"
-                                                   Visibility="Collapsed"/>
-                                                </Grid>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsChecked" Value="True">
-                                                        <Setter TargetName="CheckImage" Property="Visibility" Value="Visible"/>
-                                                        <Setter TargetName="Ellipse" Property="Visibility" Value="Collapsed"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter TargetName="Ellipse" Property="Stroke" Value="DodgerBlue"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
+                                <Style TargetType="CheckBox" BasedOn="{StaticResource TaskCheckBoxStyle}"/>
                             </CheckBox.Style>
                         </CheckBox>
+                        
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Title}"
-                               FontSize="16"
-                               Margin="5,0,0,2" FontFamily="Actor"  FontWeight="Light">
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextDecorations" Value="None"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
-                                                <Setter Property="TextDecorations" Value="Strikethrough"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                            <TextBlock Text="{Binding DueDate, StringFormat=\{0:HH:mm\}}"
-                               FontSize="14"
-                               Foreground="Gray"
-                               Margin="5,0,0,0" FontFamily="Actor" FontWeight="Light" >
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextDecorations" Value="None"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
-                                                <Setter Property="TextDecorations" Value="Strikethrough"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
+                            <TextBlock Text="{Binding Title}" FontSize="16" Margin="5,0,0,2"  Style="{StaticResource CustomTextBlockStyle}"/>
+                            <TextBlock Text="{Binding DueDate, StringFormat=\{0:HH:mm\}}" FontSize="14" Foreground="Gray" Margin="5,0,0,0" Style="{StaticResource CustomTextBlockStyle}" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button BorderBrush="{x:Null}"
-         Foreground="White"
-         Content="+"
-         FontSize="24" Height="56"
-         VerticalAlignment="Top" HorizontalAlignment="Left" Width="56" Click="Button_Click" Margin="37,490,0,0">
+        <Button BorderBrush="{x:Null}"  Foreground="White"  Content="+" FontSize="24" Height="56" VerticalAlignment="Top" HorizontalAlignment="Left" Width="56" Click="Button_Click" Margin="37,490,0,0">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFFFB6B6" Offset="1"/>
-                    <GradientStop Color="#FFED3939" Offset="0"/>
+                    <GradientStop Color="{StaticResource PrimaryColor}" Offset="0"/>
                 </LinearGradientBrush>
             </Button.Background>
             <Button.Template>
@@ -165,54 +67,29 @@
         <Label Content="Учёба" Tag="Учёба" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="304,64,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF004AC3"/>
         <Label Content="Отдых" Tag="Отдых" MouseDown="CategoryLabel_Click" HorizontalAlignment="Left" Margin="386,62,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFB700FF"/>
 
-        <Label Content="История" HorizontalAlignment="Left"
-               Margin="29,164,0,0"
-                MouseDown="OpenHistoryWindow"
-               VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
-        <Label Content="Задачи" HorizontalAlignment="Left"
-               Margin="36,125,0,0"
-               VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600" MouseDown="ShowAllTasks"/>
-        <Border x:Name="taskDetailsBorder" 
-  Margin="501,105,10,34"
-  BorderBrush="Black"
-  BorderThickness="1"
-  CornerRadius="3"
-  Visibility="Collapsed" VerticalAlignment="Top" Height="425" >
-            <Border.Effect>
-                <DropShadowEffect Color="Gray" Direction="270" BlurRadius="10" ShadowDepth="3" Opacity="0.7"/>
-            </Border.Effect>
+        <Label Content="История" HorizontalAlignment="Left"  Margin="29,164,0,0"  MouseDown="OpenHistoryWindow" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600"/>
+        <Label Content="Задачи" HorizontalAlignment="Left"  Margin="36,125,0,0"  VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="#FF754600" MouseDown="ShowAllTasks"/>
+        
+        <Border x:Name="taskDetailsBorder" Margin="501,105,10,34" Visibility="Collapsed" VerticalAlignment="Top" Height="425"  Style="{StaticResource TaskDetailsBorderStyle}"  >
+        
             <StackPanel Background="White">
                 <TextBlock x:Name="taskTitleTextBlock" FontSize="24" TextAlignment="Center" Margin="0,10,0,15" Text="{Binding Title}" FontFamily="Actor"  FontWeight="Light" />
                 <TextBlock x:Name="taskDueDateTextBlock" FontSize="16" TextAlignment="Left"  Text="{Binding DueDate, StringFormat=\{0:HH:mm\}}" Margin="10,0,10,0" FontFamily="Actor"  FontWeight="Light"  />
                 <TextBlock x:Name="taskDateTextBlock" FontSize="16" TextAlignment="Left"  Text="{Binding DueDate, StringFormat=\{0:yyyy-MM-dd\}}" Margin="10,0,10,0" FontFamily="Actor" FontWeight="Light" />
                 <TextBlock x:Name="taskDescriptionTextBlock" TextWrapping="Wrap" Margin="10,10,10,0" FontSize="16" Text="{Binding Description}" FontFamily="Actor" FontWeight="Light" />
-                <Button x:Name="okButton"
-          Content="Готово"
-          Visibility="Collapsed"
-          Click="okButton_Click"
-          Background="#FFED3939"
-          Foreground="White"
-          Height="39"    
-          Width="227"
-          Margin="0,175,0,0" FontSize="18">
+                
+                <Button x:Name="okButton"  Content="Готово" Visibility="Collapsed" Click="okButton_Click"  Style="{StaticResource ButtonsValid}" Height="39" Width="227"  Margin="0,175,0,0" >
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}"
-                      CornerRadius="20,20,0,0">
+                                        CornerRadius="20,20,0,0">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button x:Name="deleteButton"
-          Content="Удалить"
-          Visibility="Collapsed"
-          Click="deleteButton_Click"
-          Background="#FFED3939"
-          Foreground="White"
-          Height="39"
-          Width="227"
-          Margin="0,5,0,0" FontSize="18">
+                
+                <Button x:Name="deleteButton" Content="Удалить" Visibility="Collapsed" Click="deleteButton_Click" Style="{StaticResource ButtonsValid}" Height="39" Width="227" Margin="0,5,0,0">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" CornerRadius="0,0,20,20">
@@ -223,7 +100,6 @@
                 </Button>
             </StackPanel>
         </Border>
-        <TextBlock Text="{Binding UserName}"
-                   x:Name="username" HorizontalAlignment="Left" Margin="29,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Width="82" FontFamily="Actor"/>
+        <TextBlock Text="{Binding UserName}" x:Name="username" HorizontalAlignment="Left" Margin="29,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Width="82" FontFamily="Actor"/>
     </Grid>
 </Window>

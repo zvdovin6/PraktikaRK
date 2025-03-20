@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:Todo"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+      
+            <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourceDictionary/ResourcesTextBox.xaml"/>
+                <ResourceDictionary Source="ResourceDictionary/ResourcesButtons.xaml"/>
+                <ResourceDictionary Source="ResourceDictionary/ResourcesOtherStyles.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+   
     </Application.Resources>
 </Application>

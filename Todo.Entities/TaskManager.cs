@@ -26,6 +26,8 @@ public class TaskManager
         CompletedTasks = new ObservableCollection<TaskModel>();
     }
 
+
+
     public void SaveTask(TaskModel task)
     {
         if (!AllTasks.Contains(task))
@@ -35,6 +37,19 @@ public class TaskManager
     }
 
     public event Action TasksUpdated;
+
+    public void UncompleteTask(TaskModel task)
+    {
+        if (CompletedTasks.Contains(task))
+        {
+            CompletedTasks.Remove(task);
+            AllTasks.Add(task);
+            task.IsCompleted = false; // Обновляем статус задачи
+
+            // Вызываем событие обновления задач
+            TasksUpdated?.Invoke();
+        }
+    }
 
     public void CompleteTask(TaskModel task)
     {
@@ -48,4 +63,6 @@ public class TaskManager
             TasksUpdated?.Invoke();
         }
     }
+
+
 }
