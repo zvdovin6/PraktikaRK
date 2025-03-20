@@ -20,7 +20,7 @@ namespace Todo
     /// <summary>
     /// Логика взаимодействия для Registration.xaml
     /// </summary>
-    public partial class Registration : Window
+    public partial class Registration : Page
     {
         public Registration()
         {
@@ -108,8 +108,7 @@ namespace Todo
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            NavigationService.Navigate(new MainWindow());
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -191,10 +190,10 @@ namespace Todo
                 return;
             }
 
-            // После успешной регистрации возвращаем данные в MainWindow
-            var mainWindow = new MainWindow();
-            this.Close();
-            mainWindow.Show();
+            if (NavigationService != null)
+            {
+                NavigationService.GoBack();
+            }
         }
 
     }

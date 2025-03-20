@@ -27,6 +27,8 @@ namespace Todo
         {
             InitializeComponent();
 
+          
+
             EmailTextBox.Text = "Введите почту";
             EmailTextBox.Foreground = new SolidColorBrush(Colors.Gray);
             PasswordTextBox.Text = "Введите пароль";
@@ -70,8 +72,9 @@ namespace Todo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Registration registration = new Registration();
-            registration.Show();
+            var registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
+            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
