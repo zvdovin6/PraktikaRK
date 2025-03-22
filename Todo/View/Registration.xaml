@@ -31,12 +31,12 @@
             <Button Content="Назад" HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="274" Style="{StaticResource ButtonsValid}"  Click="Button_Click"/>
         </Border>
         <Label Content="Ваша почта" HorizontalAlignment="Left" Height="36" Margin="419,146,0,0" VerticalAlignment="Top" Width="118" FontSize="20" RenderTransformOrigin="0.483,0.74"/>
-        <TextBox x:Name="NameTextBox" Style="{StaticResource TextBoxValid}" Margin="418,111,45,465"  GotFocus="NameTextBox_GotFocus" LostFocus="NameTextBox_LostFocus"/>
-        <TextBox x:Name="EmailTextBox1" Style="{StaticResource TextBoxValid}" Margin="418,182,45,391" GotFocus="EmailTextBox1_GotFocus" LostFocus="EmailTextBox1_LostFocus"/>
-        <TextBox x:Name="PasswordTextBox1" Style="{StaticResource TextBoxValid}" Margin="419,259,45,311"  GotFocus="PasswordTextBox1_GotFocus" LostFocus="PasswordTextBox1_LostFocus"/>
+        <TextBox x:Name="NameTextBox" Style="{StaticResource TextBoxValid}" Margin="418,111,45,461"  GotFocus="NameTextBox_GotFocus" LostFocus="NameTextBox_LostFocus"/>
+        <TextBox x:Name="EmailTextBox1" Style="{StaticResource TextBoxValid}" Margin="418,182,45,389" GotFocus="EmailTextBox1_GotFocus" LostFocus="EmailTextBox1_LostFocus"/>
+        <TextBox x:Name="PasswordTextBox1" Style="{StaticResource TextBoxValid}" Margin="419,259,45,310"  GotFocus="PasswordTextBox1_GotFocus" LostFocus="PasswordTextBox1_LostFocus"/>
         <Label Content="Пароль" HorizontalAlignment="Left" Height="39" Margin="419,220,0,0" VerticalAlignment="Top" Width="96" FontSize="20"/>
         <Label Content="Повторите пароль" HorizontalAlignment="Left" Height="42" Margin="418,300,0,0" VerticalAlignment="Top" Width="184" FontSize="20"/>
-        <TextBox x:Name="ConfirmPasswordTextBox" Style="{StaticResource TextBoxValid}" Margin="419,342,45,233"  GotFocus="ConfirmPasswordTextBox_GotFocus" LostFocus="ConfirmPasswordTextBox_LostFocus"/>
+        <TextBox x:Name="ConfirmPasswordTextBox" Style="{StaticResource TextBoxValid}" Margin="419,342,45,231"  GotFocus="ConfirmPasswordTextBox_GotFocus" LostFocus="ConfirmPasswordTextBox_LostFocus"/>
 
     </Grid>
 </Page>

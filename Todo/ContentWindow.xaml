@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Todo"
         mc:Ignorable="d"
-        Height="450" Width="800">
+        Height="Auto"
+        Width="Auto"
+        MinWidth="835"
+        MinHeight="606">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,12 +18,12 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid Margin="-23,0,-31,-31"
-          Width="835"
-          Height="606">
+          MinWidth="835"
+          MinHeight="606">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="404*" />
             <ColumnDefinition Width="23*" />
         </Grid.ColumnDefinitions>
-        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  MaxWidth="800" MaxHeight="600" />
     </Grid>
 </Window>

@@ -153,10 +153,14 @@ namespace Todo.View
                 Description = DescriptionTask.Text,
                 Category = SelectedCategory
             };
-
+          
             TaskCreated?.Invoke(this, newTask);
-            NavigationService.GoBack();
+            Main mainPage = new Main();
+            NavigationService.Navigate(mainPage);
+
         }
+
+
 
         private void Abolition_Button_Click(object sender, RoutedEventArgs e)
         {

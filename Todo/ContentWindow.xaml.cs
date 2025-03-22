@@ -22,6 +22,9 @@ namespace Todo
         public ContentWindow()
         {
             InitializeComponent();
+
+            this.Width = 800;
+            this.Height = 600;
         }
     }
 }

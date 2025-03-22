@@ -22,13 +22,23 @@ namespace Todo.View
         public Main_empty()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         private void Button_Click_SPZ(object sender, RoutedEventArgs e)
         {
-            Main main = new Main();
-            NavigationService.Navigate(main);
-            Window.GetWindow(this).Close();
+            TaskCreation taskCreation = new TaskCreation();
+            taskCreation.TaskCreated += TaskCreation_TaskCreated;
+            NavigationService.Navigate(taskCreation);
         }
+
+        private void TaskCreation_TaskCreated(object sender, TaskModel newTask)
+        {
+            TaskManager.Instance.SaveTask(newTask); // Сохраняем задачу в общий список
+
+            // Создаем экземпляр Main и передаем туда задачу
+            Main mainPage = new Main();
+        }
+
     }
 }

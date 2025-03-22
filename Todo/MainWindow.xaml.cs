@@ -72,9 +72,10 @@ namespace Todo
         {
             var contentWindow = new ContentWindow();
             contentWindow.MainFrame.Navigate(new Registration());
-            contentWindow.ShowDialog();
-        }
+            contentWindow.Show();
+            this.Close();
 
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             string email = EmailTextBox.Text;
@@ -88,19 +89,13 @@ namespace Todo
             }
             else
             {
-                var mainEmpty = new Main_empty();
-                mainEmpty.InitializeComponent(); // Initialize the component
-                NavigationService navigationService = NavigationService.GetNavigationService(this);
-                if (navigationService != null)
-                {
-                    navigationService.Navigate(mainEmpty);
-                }
-                else
-                {
-                    MessageBox.Show("Navigation service is not available.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                var contentWindow = new ContentWindow();
+                contentWindow.MainFrame.NavigationService?.Navigate(new Main_empty());
+                contentWindow.Show();
                 this.Close();
             }
         }
+        
     }
+    
 }
