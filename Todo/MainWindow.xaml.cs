@@ -68,12 +68,20 @@ namespace Todo
             }
         }
 
+       
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var contentWindow = new ContentWindow();
-            contentWindow.MainFrame.Navigate(new Registration());
-            contentWindow.Show();
-            this.Close();
+            foreach (UIElement element in MainGrid.Children)
+            {
+                element.Visibility = Visibility.Collapsed;
+            }
+
+            // Переходим на страницу Registration
+            MainFrame.Navigate(new Registration());
+
+            // Показываем Frame, чтобы страница Registration была видимой
+            MainFrame.Visibility = Visibility.Visible;
 
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -89,10 +97,16 @@ namespace Todo
             }
             else
             {
-                var contentWindow = new ContentWindow();
-                contentWindow.MainFrame.NavigationService?.Navigate(new Main_empty());
-                contentWindow.Show();
-                this.Close();
+                foreach (UIElement element in ((Grid)this.Content).Children)
+                {
+                    element.Visibility = Visibility.Collapsed;
+                }
+
+                // Переходим на страницу Main_empty
+                MainFrame.Navigate(new Main_empty());
+
+                // Показываем Frame, чтобы страница Main_empty была видимой
+                MainFrame.Visibility = Visibility.Visible;
             }
         }
         

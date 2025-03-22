@@ -14,7 +14,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Margin="-23,0,-31,-31"
+    <Grid  x:Name="MainGrid" Margin="-23,0,-31,-31"
           Width="835"
           Height="606">
         <Grid.ColumnDefinitions>

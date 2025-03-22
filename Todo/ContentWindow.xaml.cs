@@ -23,8 +23,8 @@ namespace Todo
         {
             InitializeComponent();
 
-            this.Width = 800;
-            this.Height = 600;
+            this.Width = 835;
+            this.Height = 606;
         }
     }
 }
