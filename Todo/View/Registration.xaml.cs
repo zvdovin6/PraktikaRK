@@ -15,7 +15,7 @@ using Todo.Entities;
 using Todo.Repository;
 
 
-namespace Todo
+namespace Todo.View
 {
     /// <summary>
     /// Логика взаимодействия для Registration.xaml
@@ -108,7 +108,13 @@ namespace Todo
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MainWindow());
+            var contentWindow = Application.Current.Windows.OfType<ContentWindow>().FirstOrDefault();
+            if (contentWindow != null)
+            {
+                contentWindow.Close();
+            }
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

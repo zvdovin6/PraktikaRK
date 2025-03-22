@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Todo.Entities;
 using Todo.Repository;
-
+using Todo.View; 
 
 namespace Todo
 {
@@ -26,8 +26,6 @@ namespace Todo
         public MainWindow()
         {
             InitializeComponent();
-
-          
 
             EmailTextBox.Text = "Введите почту";
             EmailTextBox.Foreground = new SolidColorBrush(Colors.Gray);
@@ -72,9 +70,9 @@ namespace Todo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var registrationWindow = new RegistrationWindow();
-            registrationWindow.Show();
-            this.Close();
+            var contentWindow = new ContentWindow();
+            contentWindow.MainFrame.Navigate(new Registration());
+            contentWindow.ShowDialog();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -91,10 +89,18 @@ namespace Todo
             else
             {
                 var mainEmpty = new Main_empty();
-                mainEmpty.Show();
+                mainEmpty.InitializeComponent(); // Initialize the component
+                NavigationService navigationService = NavigationService.GetNavigationService(this);
+                if (navigationService != null)
+                {
+                    navigationService.Navigate(mainEmpty);
+                }
+                else
+                {
+                    MessageBox.Show("Navigation service is not available.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
                 this.Close();
             }
         }
     }
 }
-

@@ -18,12 +18,12 @@ using Todo.Entities;
 using Todo.Repository;
 
 
-namespace Todo
+namespace Todo.View
 {
     /// <summary>
     /// Логика взаимодействия для Main.xaml
     /// </summary>
-    public partial class Main : Window, INotifyPropertyChanged
+    public partial class Main : Page, INotifyPropertyChanged
     {
         private string _username;
         private ObservableCollection<TaskModel> _allTasks;
@@ -240,7 +240,7 @@ namespace Todo
         {
             TaskCreation taskCreation = new TaskCreation();
             taskCreation.TaskCreated += TaskCreation_TaskCreated;
-            taskCreation.Show();
+            NavigationService.Navigate(taskCreation);
 
 
         }

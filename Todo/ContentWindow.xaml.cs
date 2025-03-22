@@ -12,23 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Todo.View
+namespace Todo
 {
     /// <summary>
-    /// Логика взаимодействия для Main_empty.xaml
+    /// Логика взаимодействия для ContentWindow.xaml
     /// </summary>
-    public partial class Main_empty : Page
+    public partial class ContentWindow : Window
     {
-        public Main_empty()
+        public ContentWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click_SPZ(object sender, RoutedEventArgs e)
-        {
-            Main main = new Main();
-            NavigationService.Navigate(main);
-            Window.GetWindow(this).Close();
         }
     }
 }

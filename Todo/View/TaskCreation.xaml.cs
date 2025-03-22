@@ -17,11 +17,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Todo.Entities;
 
-namespace Todo
+namespace Todo.View
 {
 
 
-    public partial class TaskCreation : Window, INotifyPropertyChanged
+    public partial class TaskCreation : Page, INotifyPropertyChanged
     {
         private string _timeText;
         private TimeSpan? _dueTime;
@@ -105,7 +105,7 @@ namespace Todo
             LoadCategories();
             DataContext = this;
 
-       
+
         }
 
         private void LoadCategories()
@@ -155,12 +155,12 @@ namespace Todo
             };
 
             TaskCreated?.Invoke(this, newTask);
-            this.Close();
+            NavigationService.GoBack();
         }
 
         private void Abolition_Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            NavigationService.GoBack();
         }
 
         private void OnPropertyChanged(string propertyName)
