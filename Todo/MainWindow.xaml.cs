@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -74,16 +75,7 @@ namespace Todo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (UIElement element in MainGrid.Children)
-            {
-                element.Visibility = Visibility.Collapsed;
-            }
-
-            // Переходим на страницу Registration
-            MainFrame.Navigate(new Registration());
-
-            // Показываем Frame, чтобы страница Registration была видимой
-            MainFrame.Visibility = Visibility.Visible;
+            AnimatePageTransition(new Registration());
 
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -99,19 +91,25 @@ namespace Todo
             }
             else
             {
-                foreach (UIElement element in ((Grid)this.Content).Children)
-                {
-                    element.Visibility = Visibility.Collapsed;
-                }
-
-                // Переходим на страницу Main_empty
-                MainFrame.Navigate(new Main_empty());
-
-                // Показываем Frame, чтобы страница Main_empty была видимой
-                MainFrame.Visibility = Visibility.Visible;
+                AnimatePageTransition(new Main_empty());
             }
         }
-        
+
+            private void AnimatePageTransition(Page newPage)
+             {
+            // Анимация исчезновения текущей страницы
+            DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.3));
+            fadeOut.Completed += (s, e) =>
+            {
+                MainFrame.Navigate(newPage);
+
+                // Анимация появления новой страницы
+                DoubleAnimation fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.3));
+                MainFrame.BeginAnimation(UIElement.OpacityProperty, fadeIn);
+            };
+
+            MainFrame.BeginAnimation(UIElement.OpacityProperty, fadeOut);
+            MainFrame.Visibility = Visibility.Visible;
+        }
     }
-    
 }
