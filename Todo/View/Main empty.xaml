@@ -17,7 +17,7 @@
     <Grid Margin="-23,0,-31,-31"
            Width="835"
            Height="606">
-        <Image HorizontalAlignment="Left" Height="76" Margin="31,10,0,0" VerticalAlignment="Top" Width="75" Source="/image.png"/>
+        <Image HorizontalAlignment="Left" Height="76" Margin="31,10,0,0" VerticalAlignment="Top" Width="75" Source="/image1/image.png"/>
         <Label Content="Добро пожаловать!" HorizontalAlignment="Left" Height="54" Margin="172,127,0,0" VerticalAlignment="Top" Width="306" FontSize="32"/>
         <Label Content="Создайте свою первую задачу!" HorizontalAlignment="Left" Height="73" Margin="172,208,0,0" VerticalAlignment="Top" Width="524" FontSize="32"/>
         <Button Content="Создать первую задачу" HorizontalAlignment="Left" Height="48" VerticalAlignment="Center" Width="227"  Style="{StaticResource ButtonsValid}" Click="Button_Click_SPZ" Margin="273,0,0,0" >

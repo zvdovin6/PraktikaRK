@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Todo.Entities;
@@ -34,7 +35,23 @@ namespace Todo.View
             NameTextBox.Foreground = new SolidColorBrush(Colors.Gray);
             ConfirmPasswordTextBox.Text = "Повторите пароль";
             ConfirmPasswordTextBox.Foreground = new SolidColorBrush(Colors.Gray);
+
+            AnimatePageFadeIn();
         }
+
+        private void AnimatePageFadeIn()
+        {
+            DoubleAnimation fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
+            this.BeginAnimation(OpacityProperty, fadeIn);
+        }
+
+        private void AnimatePageFadeOut(Action onCompleted)
+        {
+            DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.3));
+            fadeOut.Completed += (s, e) => onCompleted();
+            this.BeginAnimation(OpacityProperty, fadeOut);
+        }
+
         private void EmailTextBox1_GotFocus(object sender, RoutedEventArgs e)
         {
             if (EmailTextBox1.Text == "Введите почту")
@@ -111,15 +128,21 @@ namespace Todo.View
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainFrame.Navigate(null); // Очищаем Frame
-                mainWindow.MainFrame.Visibility = Visibility.Collapsed; // Скрываем Frame
-                foreach (UIElement element in mainWindow.MainGrid.Children)
+                AnimatePageFadeOut(() =>
                 {
-                    element.Visibility = Visibility.Visible; // Показываем скрытые элементы MainWindow
-                }
+                    mainWindow.MainFrame.Navigate(null);
+                    mainWindow.MainFrame.Visibility = Visibility.Collapsed;
+                    foreach (UIElement element in mainWindow.MainGrid.Children)
+                    {
+                        element.Visibility = Visibility.Visible;
+                    }
+                });
             }
         }
-       
+
+
+
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -203,18 +226,17 @@ namespace Todo.View
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainFrame.Navigate(null); // Очищаем Frame
-                mainWindow.MainFrame.Visibility = Visibility.Collapsed; // Скрываем Frame
-                foreach (UIElement element in mainWindow.MainGrid.Children)
+                AnimatePageFadeOut(() =>
                 {
-                    element.Visibility = Visibility.Visible; // Показываем скрытые элементы MainWindow
-                }
+                    mainWindow.MainFrame.Navigate(null);
+                    mainWindow.MainFrame.Visibility = Visibility.Collapsed;
+                    foreach (UIElement element in mainWindow.MainGrid.Children)
+                    {
+                        element.Visibility = Visibility.Visible;
+                    }
+                });
             }
         }
-
     }
-
-
 }
-
 

@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -29,7 +30,19 @@ namespace Todo.View
         {
             TaskCreation taskCreation = new TaskCreation();
             taskCreation.TaskCreated += TaskCreation_TaskCreated;
-            NavigationService.Navigate(taskCreation);
+            DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.3));
+            fadeOut.Completed += (s, fadeOutCompletedEventArgs) =>
+            {
+                // После завершения анимации исчезновения, переходим на новую страницу
+                NavigationService.Navigate(taskCreation);
+
+                // Анимация появления новой страницы
+                DoubleAnimation fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.3));
+                taskCreation.BeginAnimation(UIElement.OpacityProperty, fadeIn);
+            };
+
+            // Применяем анимацию исчезновения для текущей страницы
+            this.BeginAnimation(UIElement.OpacityProperty, fadeOut);
         }
 
         private void TaskCreation_TaskCreated(object sender, TaskModel newTask)

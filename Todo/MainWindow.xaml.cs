@@ -75,7 +75,16 @@ namespace Todo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            foreach (UIElement element in MainGrid.Children)
+            {
+                element.Visibility = Visibility.Collapsed;
+            }
+
+            // Переходим на страницу Registration
             AnimatePageTransition(new Registration());
+
+            // Показываем Frame, чтобы страница Registration была видимой
+            MainFrame.Visibility = Visibility.Visible;
 
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -91,12 +100,21 @@ namespace Todo
             }
             else
             {
+                foreach (UIElement element in ((Grid)this.Content).Children)
+                {
+                    element.Visibility = Visibility.Collapsed;
+                }
+
+                // Переходим на страницу Main_empty
                 AnimatePageTransition(new Main_empty());
+
+                // Показываем Frame, чтобы страница Main_empty была видимой
+                MainFrame.Visibility = Visibility.Visible;
             }
         }
 
             private void AnimatePageTransition(Page newPage)
-             {
+                {
             // Анимация исчезновения текущей страницы
             DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.3));
             fadeOut.Completed += (s, e) =>
@@ -111,5 +129,7 @@ namespace Todo
             MainFrame.BeginAnimation(UIElement.OpacityProperty, fadeOut);
             MainFrame.Visibility = Visibility.Visible;
         }
+
     }
+    
 }

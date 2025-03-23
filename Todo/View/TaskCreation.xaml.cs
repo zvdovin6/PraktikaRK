@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Todo.Entities;
@@ -155,8 +156,19 @@ namespace Todo.View
             };
           
             TaskCreated?.Invoke(this, newTask);
-            Main mainPage = new Main();
-            NavigationService.Navigate(mainPage);
+            DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.3));
+            fadeOut.Completed += (s, e1) =>
+            {
+                // После завершения анимации, переходим на страницу Main
+                Main mainPage = new Main();
+                NavigationService.Navigate(mainPage);
+
+                // Анимация появления страницы Main
+                DoubleAnimation fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.3));
+                mainPage.BeginAnimation(UIElement.OpacityProperty, fadeIn);
+            };
+
+            this.BeginAnimation(UIElement.OpacityProperty, fadeOut);
 
         }
 
@@ -164,7 +176,19 @@ namespace Todo.View
 
         private void Abolition_Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.3));
+            fadeOut.Completed += (s, e1) =>
+            {
+                // После завершения анимации, переходим на страницу Main_empty
+                Main_empty mainEmptyPage = new Main_empty();
+                NavigationService.Navigate(mainEmptyPage);
+
+                // Анимация появления страницы Main_empty
+                DoubleAnimation fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.3));
+                mainEmptyPage.BeginAnimation(UIElement.OpacityProperty, fadeIn);
+            };
+
+            this.BeginAnimation(UIElement.OpacityProperty, fadeOut);
         }
 
         private void OnPropertyChanged(string propertyName)
