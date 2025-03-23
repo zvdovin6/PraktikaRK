@@ -176,18 +176,35 @@ namespace Todo.View
 
         private void Abolition_Button_Click(object sender, RoutedEventArgs e)
         {
+            // Создаем анимацию для исчезновения текущей страницы
             DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.3));
+
             fadeOut.Completed += (s, e1) =>
             {
-                // После завершения анимации, переходим на страницу Main_empty
-                Main_empty mainEmptyPage = new Main_empty();
-                NavigationService.Navigate(mainEmptyPage);
+                // Условие для выбора страницы
+                var mainPage = new Main();
+                if (mainPage.Tasks.Count > 0)
+                {
+                    // Переход на страницу Main
+                    NavigationService.Navigate(mainPage);
 
-                // Анимация появления страницы Main_empty
-                DoubleAnimation fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.3));
-                mainEmptyPage.BeginAnimation(UIElement.OpacityProperty, fadeIn);
+                    // Анимация появления страницы Main
+                    DoubleAnimation fadeInMain = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.3));
+                    mainPage.BeginAnimation(UIElement.OpacityProperty, fadeInMain);
+                }
+                else
+                {
+                    // Переход на страницу Main_empty
+                    var mainEmptyPage = new Main_empty();
+                    NavigationService.Navigate(mainEmptyPage);
+
+                    // Анимация появления страницы Main_empty
+                    DoubleAnimation fadeInEmpty = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.3));
+                    mainEmptyPage.BeginAnimation(UIElement.OpacityProperty, fadeInEmpty);
+                }
             };
 
+            // Начинаем анимацию исчезновения текущей страницы
             this.BeginAnimation(UIElement.OpacityProperty, fadeOut);
         }
 
