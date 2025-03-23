@@ -108,11 +108,7 @@ namespace Todo.View
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var contentWindow = Application.Current.Windows.OfType<ContentWindow>().FirstOrDefault();
-            if (contentWindow != null)
-            {
-                contentWindow.Close();
-            }
+          
             var mainWindow = new MainWindow();
             mainWindow.Show();
         }
