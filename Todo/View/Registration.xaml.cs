@@ -108,10 +108,18 @@ namespace Todo.View
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-          
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.MainFrame.Navigate(null); // Очищаем Frame
+                mainWindow.MainFrame.Visibility = Visibility.Collapsed; // Скрываем Frame
+                foreach (UIElement element in mainWindow.MainGrid.Children)
+                {
+                    element.Visibility = Visibility.Visible; // Показываем скрытые элементы MainWindow
+                }
+            }
         }
+       
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -192,9 +200,15 @@ namespace Todo.View
                 return;
             }
 
-            if (NavigationService != null)
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
             {
-                NavigationService.GoBack();
+                mainWindow.MainFrame.Navigate(null); // Очищаем Frame
+                mainWindow.MainFrame.Visibility = Visibility.Collapsed; // Скрываем Frame
+                foreach (UIElement element in mainWindow.MainGrid.Children)
+                {
+                    element.Visibility = Visibility.Visible; // Показываем скрытые элементы MainWindow
+                }
             }
         }
 

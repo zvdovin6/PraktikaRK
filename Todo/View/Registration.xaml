@@ -21,7 +21,7 @@
             <ColumnDefinition Width="404*" />
             <ColumnDefinition Width="23*" />
         </Grid.ColumnDefinitions>
-        <Image HorizontalAlignment="Left" Height="150" Margin="66,36,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.501,0.505" Source="/Рисунок1.png"/>
+        <Image HorizontalAlignment="Left" Height="150" Margin="66,36,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.501,0.505" Source="/image1/Рисунок1.png"/>
         <Label Content="Welcome back!" HorizontalAlignment="Left" Height="49" Margin="472,19,0,0" VerticalAlignment="Top" Width="226" FontSize="32"/>
         <Label Content="Имя пользователя" HorizontalAlignment="Left" Height="37" Margin="413,69,0,0" VerticalAlignment="Top" Width="191" FontSize="20" RenderTransformOrigin="0.463,0.528"/>
         <Border Style="{StaticResource BorderValid}" HorizontalAlignment="Left" Height="56" Margin="400,389,0,0" VerticalAlignment="Top" Width="370" CornerRadius="20,20,5,5">

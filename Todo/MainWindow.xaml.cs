@@ -31,6 +31,8 @@ namespace Todo
             EmailTextBox.Foreground = new SolidColorBrush(Colors.Gray);
             PasswordTextBox.Text = "Введите пароль";
             PasswordTextBox.Foreground = new SolidColorBrush(Colors.Gray);
+
+
         }
 
         private void EmailTextBox_GotFocus(object sender, RoutedEventArgs e)
