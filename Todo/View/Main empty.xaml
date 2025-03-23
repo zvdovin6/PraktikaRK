@@ -20,10 +20,15 @@
         <Image HorizontalAlignment="Left" Height="76" Margin="31,10,0,0" VerticalAlignment="Top" Width="75" Source="/image.png"/>
         <Label Content="Добро пожаловать!" HorizontalAlignment="Left" Height="54" Margin="172,127,0,0" VerticalAlignment="Top" Width="306" FontSize="32"/>
         <Label Content="Создайте свою первую задачу!" HorizontalAlignment="Left" Height="73" Margin="172,208,0,0" VerticalAlignment="Top" Width="524" FontSize="32"/>
-        <Border  Style="{StaticResource BorderValid}" HorizontalAlignment="Center" Height="48" Margin="0,331,0,0" VerticalAlignment="Top" Width="314" CornerRadius="5,5,5,5">
-            <Button Content="Создать первую задачу" HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="254"  Style="{StaticResource ButtonsValid}" Click="Button_Click_SPZ"/>
-        </Border>
-
-
+        <Button Content="Создать первую задачу" HorizontalAlignment="Left" Height="48" VerticalAlignment="Center" Width="227"  Style="{StaticResource ButtonsValid}" Click="Button_Click_SPZ" Margin="273,0,0,0" >
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                   CornerRadius="15,15,15,15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Page>

@@ -24,12 +24,26 @@
         <Image HorizontalAlignment="Left" Height="150" Margin="66,36,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.501,0.505" Source="/image1/Рисунок1.png"/>
         <Label Content="Welcome back!" HorizontalAlignment="Left" Height="49" Margin="472,19,0,0" VerticalAlignment="Top" Width="226" FontSize="32"/>
         <Label Content="Имя пользователя" HorizontalAlignment="Left" Height="37" Margin="413,69,0,0" VerticalAlignment="Top" Width="191" FontSize="20" RenderTransformOrigin="0.463,0.528"/>
-        <Border Style="{StaticResource BorderValid}" HorizontalAlignment="Left" Height="56" Margin="400,389,0,0" VerticalAlignment="Top" Width="370" CornerRadius="20,20,5,5">
-            <Button Content="Зарегистрироваться" HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="279" Style="{StaticResource ButtonsValid}"  Click="Button_Click_1"/>
-        </Border>
-        <Border Style="{StaticResource BorderValid}" HorizontalAlignment="Left" Height="56" Margin="400,450,0,0" VerticalAlignment="Top" Width="370" CornerRadius="5,5,20,20">
-            <Button Content="Назад" HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="274" Style="{StaticResource ButtonsValid}"  Click="Button_Click"/>
-        </Border>
+        <Button Content="Зарегистрироваться" HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="328" Style="{StaticResource ButtonsValid}"  Click="Button_Click_1" Margin="438,418,0,0" >
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                CornerRadius="15,15,0,0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Content="Назад" HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="328" Style="{StaticResource ButtonsValid}"  Click="Button_Click" Margin="438,474,0,0">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                   CornerRadius="0,0,15,15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
         <Label Content="Ваша почта" HorizontalAlignment="Left" Height="36" Margin="419,146,0,0" VerticalAlignment="Top" Width="118" FontSize="20" RenderTransformOrigin="0.483,0.74"/>
         <TextBox x:Name="NameTextBox" Style="{StaticResource TextBoxValid}" Margin="418,111,45,461"  GotFocus="NameTextBox_GotFocus" LostFocus="NameTextBox_LostFocus"/>
         <TextBox x:Name="EmailTextBox1" Style="{StaticResource TextBoxValid}" Margin="418,182,45,389" GotFocus="EmailTextBox1_GotFocus" LostFocus="EmailTextBox1_LostFocus"/>

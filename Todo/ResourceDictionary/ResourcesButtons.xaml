@@ -27,22 +27,12 @@
         </Setter>
     </Style>
     
-    <Style TargetType="Border" x:Key="BorderValid">
-        <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="CornerRadius" Value="20"/>
-    </Style>
-
-
-
-
 
     <ControlTemplate x:Key="RoundedButtonTemplate" TargetType="Button">
         <Border Background="{TemplateBinding Background}" 
             BorderBrush="{TemplateBinding BorderBrush}" 
             BorderThickness="{TemplateBinding BorderThickness}" 
-            CornerRadius="20">
+            CornerRadius="15">
             <ContentPresenter HorizontalAlignment="Center" 
                           VerticalAlignment="Center"/>
         </Border>
@@ -58,12 +48,6 @@
         <Setter Property="Template" Value="{StaticResource RoundedButtonTemplate}"/>
     </Style>
     
-    <Style x:Key="PrimaryButtonBorderStyle" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource PrimaryButtonBrush}"/>
-        <Setter Property="CornerRadius" Value="15"/>
-        <Setter Property="Width" Value="322"/>
-        <Setter Property="Height" Value="59"/>
-    </Style>
 
     
     
@@ -77,11 +61,5 @@
         <Setter Property="Template" Value="{StaticResource RoundedButtonTemplate}"/>
     </Style>
     
-    <Style x:Key="SecondaryButtonBorderStyle" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource SecondaryButtonBrush}"/>
-        <Setter Property="CornerRadius" Value="15"/>
-        <Setter Property="Width" Value="322"/>
-        <Setter Property="Height" Value="59"/>
-    </Style>
 
 </ResourceDictionary>
