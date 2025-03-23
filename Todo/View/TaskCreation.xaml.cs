@@ -164,7 +164,17 @@ namespace Todo.View
 
         private void Abolition_Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            var mainPage = new Main();
+            if (mainPage.Tasks.Count > 0) 
+            {
+               
+                NavigationService.Navigate(mainPage);
+            }
+            else
+            {
+                
+                NavigationService.Navigate(new Main_empty());
+            }
         }
 
         private void OnPropertyChanged(string propertyName)

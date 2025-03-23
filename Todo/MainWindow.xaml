@@ -21,8 +21,8 @@
             <ColumnDefinition Width="404*" />
             <ColumnDefinition Width="23*" />
         </Grid.ColumnDefinitions>
-        
-        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
         <Image HorizontalAlignment="Left" Height="149" Margin="64,66,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.501,0.505" Source="/image1/Рисунок1.png"/>
         <Label Content="Добро пожаловать!" HorizontalAlignment="Left" Height="54" Margin="367,66,0,0" VerticalAlignment="Top" Width="315" FontSize="32"/>
