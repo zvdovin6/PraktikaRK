@@ -125,118 +125,104 @@ namespace Todo.View
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var mainWindow = Application.Current.MainWindow as MainWindow;
-            if (mainWindow != null)
-            {
-                AnimatePageFadeOut(() =>
-                {
-                    mainWindow.MainFrame.Navigate(null);
-                    mainWindow.MainFrame.Visibility = Visibility.Collapsed;
-                    foreach (UIElement element in mainWindow.MainGrid.Children)
-                    {
-                        element.Visibility = Visibility.Visible;
-                    }
-                });
-            }
-        }
+            DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.3));
 
+            fadeOut.Completed += (s, e1) =>
+            {
+                // Переход на страницу LogIn
+                var loginPage = new LogIn();
+                NavigationService.Navigate(loginPage);
+
+                // Анимация появления страницы LogIn
+                DoubleAnimation fadeInLogin = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.3));
+                loginPage.BeginAnimation(UIElement.OpacityProperty, fadeInLogin);
+            };
+
+            this.BeginAnimation(OpacityProperty, fadeOut);
+        }
 
 
 
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string email = EmailTextBox1.Text.Trim();
-            string password = PasswordTextBox1.Text.Trim();
-            string confirmPassword = ConfirmPasswordTextBox.Text.Trim();
-            string name = NameTextBox.Text.Trim();
+            {
+                string email = EmailTextBox1.Text.Trim();
+                string password = PasswordTextBox1.Text.Trim();
+                string confirmPassword = ConfirmPasswordTextBox.Text.Trim();
+                string name = NameTextBox.Text.Trim();
 
-            // Проверка на пустые поля
-            if ((string.IsNullOrWhiteSpace(email) || email == "Введите почту") &&
-                (string.IsNullOrWhiteSpace(password) || password == "Введите пароль") &&
-                (string.IsNullOrWhiteSpace(confirmPassword) || confirmPassword == "Повторите пароль") &&
-                (string.IsNullOrWhiteSpace(name) || name == "Введите имя"))
-            {
-                MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            // Проверка имени
-            if (string.IsNullOrWhiteSpace(name) || name == "Введите имя")
-            {
-                MessageBox.Show("Пожалуйста, введите имя.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (!name.IsValidName())
-            {
-                MessageBox.Show("Имя должно содержать не менее 3 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            // Проверка электронной почты
-            if (string.IsNullOrWhiteSpace(email) || email == "Введите почту")
-            {
-                MessageBox.Show("Пожалуйста, введите электронную почту.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (!email.IsValidEmail())
-            {
-                MessageBox.Show("Неверный формат электронной почты.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            // Проверка пароля
-            if (string.IsNullOrWhiteSpace(password) || password == "Введите пароль")
-            {
-                MessageBox.Show("Пожалуйста, введите пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (!password.IsValidPassword())
-            {
-                MessageBox.Show("Пароль должен содержать не менее 6 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            // Проверка подтверждения пароля
-            if (string.IsNullOrWhiteSpace(confirmPassword) || confirmPassword == "Повторите пароль")
-            {
-                MessageBox.Show("Пожалуйста, подтвердите пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (!password.ArePasswordsMatching(confirmPassword))
-            {
-                MessageBox.Show("Пароли не совпадают.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            var result = UserRepository.Register(new UserModel
-            {
-                Name = name,
-                Email = email,
-                Password = password
-            });
-
-            // Проверка на уникальность email
-            if (result.Contains("существует"))
-            {
-                MessageBox.Show(result, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            var mainWindow = Application.Current.MainWindow as MainWindow;
-            if (mainWindow != null)
-            {
-                AnimatePageFadeOut(() =>
+                // Проверка на пустые поля
+                if (string.IsNullOrWhiteSpace(email) || email == "Введите почту" ||
+                    string.IsNullOrWhiteSpace(password) || password == "Введите пароль" ||
+                    string.IsNullOrWhiteSpace(confirmPassword) || confirmPassword == "Повторите пароль" ||
+                    string.IsNullOrWhiteSpace(name) || name == "Введите имя")
                 {
-                    mainWindow.MainFrame.Navigate(null);
-                    mainWindow.MainFrame.Visibility = Visibility.Collapsed;
-                    foreach (UIElement element in mainWindow.MainGrid.Children)
-                    {
-                        element.Visibility = Visibility.Visible;
-                    }
+                    MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Проверка имени
+                if (!name.IsValidName())
+                {
+                    MessageBox.Show("Имя должно содержать не менее 3 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Проверка электронной почты
+                if (!email.IsValidEmail())
+                {
+                    MessageBox.Show("Неверный формат электронной почты.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Проверка пароля
+                if (!password.IsValidPassword())
+                {
+                    MessageBox.Show("Пароль должен содержать не менее 6 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Проверка подтверждения пароля
+                if (!password.ArePasswordsMatching(confirmPassword))
+                {
+                    MessageBox.Show("Пароли не совпадают.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var result = UserRepository.Register(new UserModel
+                {
+                    Name = name,
+                    Email = email,
+                    Password = password
                 });
+
+                // Проверка на уникальность email
+                if (result.Contains("существует"))
+                {
+                    MessageBox.Show(result, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                MessageBox.Show("Регистрация успешна!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Анимация исчезновения и переход на LogIn
+                DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.3));
+
+                fadeOut.Completed += (s, e1) =>
+                {
+                    var loginPage = new LogIn();
+                    NavigationService.Navigate(loginPage);
+
+                    // Анимация появления LogIn
+                    DoubleAnimation fadeInLogin = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.3));
+                    loginPage.BeginAnimation(UIElement.OpacityProperty, fadeInLogin);
+                };
+
+                this.BeginAnimation(OpacityProperty, fadeOut);
             }
         }
     }
 }
+
 

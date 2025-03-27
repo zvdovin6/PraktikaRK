@@ -5,63 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Todo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ResourceDictionary/ResourcesTextBox.xaml"/>
-                <ResourceDictionary Source="ResourceDictionary/ResourcesButtons.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
-    <Grid  x:Name="MainGrid" Margin="-23,0,-31,-31"
-          Width="835"
-          Height="606">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="404*" />
-            <ColumnDefinition Width="23*" />
-        </Grid.ColumnDefinitions>
-
+        Title="MainWindow" Height="616" Width="835">
+    <Grid>
+        
         <Frame Name="MainFrame" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
-        <Image HorizontalAlignment="Left" Height="149" Margin="64,66,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.501,0.505" Source="/image1/Рисунок1.png"/>
-        <Label Content="Добро пожаловать!" HorizontalAlignment="Left" Height="54" Margin="367,66,0,0" VerticalAlignment="Top" Width="315" FontSize="32"/>
-        <Label Content="Почта" HorizontalAlignment="Left" Height="39" Margin="367,200,0,0" VerticalAlignment="Top" Width="78" FontSize="20"/>
-        <Button Content="Войти" HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="328"  Click="Button_Click_1" Style="{StaticResource ButtonsValid}" Margin="438,418,0,0">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-                        CornerRadius="15,15,0,0">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button Content="Регистрация" HorizontalAlignment="Left" Width="328" Height="48" Margin="438,474,0,0" VerticalAlignment="Top"  Click="Button_Click" Style="{StaticResource ButtonsValid}">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="0,0,15,15">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Label Content="Пароль" HorizontalAlignment="Left" Height="39" Margin="367,292,0,0" VerticalAlignment="Top" Width="78" FontSize="20"/>
-        <TextBox x:Name="EmailTextBox"  Margin="367,239,70,334"  GotFocus="EmailTextBox_GotFocus" LostFocus="EmailTextBox_LostFocus" Style="{StaticResource TextBoxValid}"/>
-        <TextBox x:Name="PasswordTextBox" Margin="367,336,70,236" GotFocus="PasswordTextBox_GotFocus" LostFocus="PasswordTextBox_LostFocus" Style="{StaticResource TextBoxValid}"/>
-        <Label Content="Восстановить пароль" HorizontalAlignment="Left" Margin="541,372,0,0" VerticalAlignment="Top" FontSize="18" Height="38" RenderTransformOrigin="0.504,-0.022" Width="190">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="-0.15"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="-0.249"/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
     </Grid>
 </Window>
-       
-        
-
-

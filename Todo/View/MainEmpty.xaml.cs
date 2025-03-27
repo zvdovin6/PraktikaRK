@@ -18,9 +18,9 @@ namespace Todo.View
     /// <summary>
     /// Логика взаимодействия для Main_empty.xaml
     /// </summary>
-    public partial class Main_empty : Page
+    public partial class MainEmpty : Page
     {
-        public Main_empty()
+        public MainEmpty()
         {
             InitializeComponent();
             DataContext = this;

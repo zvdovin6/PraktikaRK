@@ -154,7 +154,7 @@ namespace Todo.View
                 Description = DescriptionTask.Text,
                 Category = SelectedCategory
             };
-          
+
             TaskCreated?.Invoke(this, newTask);
             DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.3));
             fadeOut.Completed += (s, e1) =>
@@ -174,39 +174,34 @@ namespace Todo.View
 
 
 
+
         private void Abolition_Button_Click(object sender, RoutedEventArgs e)
         {
-            // Создаем анимацию для исчезновения текущей страницы
             DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.3));
 
             fadeOut.Completed += (s, e1) =>
             {
-                // Условие для выбора страницы
-                var mainPage = new Main();
-                if (mainPage.Tasks.Count > 0)
-                {
-                    // Переход на страницу Main
-                    NavigationService.Navigate(mainPage);
+                Page targetPage;
 
-                    // Анимация появления страницы Main
-                    DoubleAnimation fadeInMain = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.3));
-                    mainPage.BeginAnimation(UIElement.OpacityProperty, fadeInMain);
+                if (TaskManager.Instance.AllTasks.Count > 0)
+                {
+                    targetPage = new Main();
                 }
                 else
                 {
-                    // Переход на страницу Main_empty
-                    var mainEmptyPage = new Main_empty();
-                    NavigationService.Navigate(mainEmptyPage);
-
-                    // Анимация появления страницы Main_empty
-                    DoubleAnimation fadeInEmpty = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.3));
-                    mainEmptyPage.BeginAnimation(UIElement.OpacityProperty, fadeInEmpty);
+                    targetPage = new MainEmpty();
                 }
+
+                NavigationService.Navigate(targetPage);
+
+                // Анимация появления новой страницы
+                DoubleAnimation fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.3));
+                targetPage.BeginAnimation(UIElement.OpacityProperty, fadeIn);
             };
 
-            // Начинаем анимацию исчезновения текущей страницы
             this.BeginAnimation(UIElement.OpacityProperty, fadeOut);
         }
+
 
         private void OnPropertyChanged(string propertyName)
         {

@@ -70,13 +70,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Todo.Repository\InputValidator.cs" />
     <Compile Include="View\TaskCreation.xaml.cs">
       <DependentUpon>TaskCreation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Todo.Repository\UserRepository.cs" />
-    <Compile Include="View\Main empty.xaml.cs">
-      <DependentUpon>Main empty.xaml</DependentUpon>
+    <Compile Include="View\MainEmpty.xaml.cs">
+      <DependentUpon>MainEmpty.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -85,6 +88,10 @@
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LogIn.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -92,8 +99,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="View\LogIn.xaml.cs">
+      <DependentUpon>LogIn.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ResourceDictionary\ResourcesButtons.xaml">
@@ -112,7 +119,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Main empty.xaml">
+    <Page Include="View\MainEmpty.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
