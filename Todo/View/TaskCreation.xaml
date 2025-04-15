@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Todo"
        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="TaskCreation" Height="580" Width="764">
+        Title="TaskCreation" Height="616" Width="835">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,19 +16,19 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Background="#FFD9D9D9" Height="580" Width="764"  >
+    <Grid Background="#FFD9D9D9" Height="616" Width="835"  >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="190*" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Button x:Name="Сreation_Button" Content="Создать" HorizontalAlignment="Left" VerticalAlignment="Top" Height="59" Width="327"  Margin="43,444,0,0"  Click="Сreation_Button_Click" Style="{StaticResource PrimaryButtonStyle}"/>
-        <Button x:Name="Abolition_Button" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Height="59" Width="327"  Margin="418,444,0,0"  Click="Abolition_Button_Click" Style="{StaticResource SecondaryButtonStyle}"/>
-        <TextBox x:Name="DescriptionTask" HorizontalAlignment="Left" Margin="29,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="342" Height="104" Style="{StaticResource TextBoxStyle}" />
-        <TextBox x:Name="NameTask" HorizontalAlignment="Left" Margin="29,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="342" Height="61"  Style="{StaticResource TextBoxStyle}" />
-        <Label Content="Описание" HorizontalAlignment="Left" Margin="43,256,0,0" VerticalAlignment="Top" FontSize="18" Height="34" Width="92"/>
-        <Label Content="Категория" HorizontalAlignment="Left" Margin="43,153,0,0" VerticalAlignment="Top" FontSize="18" Height="34" Width="94"/>
+        <Button x:Name="Сreation_Button" Content="Создать" HorizontalAlignment="Left" VerticalAlignment="Top" Height="58" Width="327"  Margin="43,466,0,0"  Click="Сreation_Button_Click" Style="{StaticResource PrimaryButtonStyle}"/>
+        <Button x:Name="Abolition_Button" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Height="58" Width="327"  Margin="418,464,0,0"  Click="Abolition_Button_Click" Style="{StaticResource SecondaryButtonStyle}"/>
+        <TextBox x:Name="DescriptionTask" HorizontalAlignment="Left" Margin="29,302,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="342" Height="104" Style="{StaticResource TextBoxStyle}" />
+        <TextBox x:Name="NameTask" HorizontalAlignment="Left" Margin="29,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="342" Height="61"  Style="{StaticResource TextBoxStyle}" />
+        <Label Content="Описание" HorizontalAlignment="Left" Margin="43,264,0,0" VerticalAlignment="Top" FontSize="18" Height="34" Width="92"/>
+        <Label Content="Категория" HorizontalAlignment="Left" Margin="43,157,0,0" VerticalAlignment="Top" FontSize="18" Height="34" Width="94"/>
         <Label Content="Название" HorizontalAlignment="Left" Margin="43,40,0,0" VerticalAlignment="Top" FontSize="18" Height="34" Width="89"/>
-        <ComboBox x:Name="CategoryComboBox" Width="342" Height="42" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{StaticResource TextBoxBackgroundBrush}" BorderBrush="{x:Null}" ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEditable="False" Margin="29,185,0,0">
+        <ComboBox x:Name="CategoryComboBox" Width="342" Height="42" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{StaticResource TextBoxBackgroundBrush}" BorderBrush="{x:Null}" ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEditable="False" Margin="29,193,0,0">
             <ComboBox.Style>
                 <Style TargetType="ComboBox">
                     <Setter Property="Template">
@@ -88,7 +88,7 @@
                 </Style>
             </ComboBox.Style>
         </ComboBox>
-        <DatePicker x:Name="taskDataPicker" HorizontalAlignment="Left" Margin="433,72,0,0" VerticalAlignment="Top" Height="204" Width="300"  SelectedDate="{Binding TaskDate, Mode=TwoWay}" BorderBrush="{x:Null}" />
-        <xctk:MaskedTextBox x:Name="TimeMaskedTextBox" Mask="00:00" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="434,305,0,0" Width="302" Height="35" PromptChar="_" Text="{Binding TimeText, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource CustomMaskedTextBoxStyle}" />
+        <DatePicker x:Name="taskDataPicker" HorizontalAlignment="Left" Margin="433,62,0,0" VerticalAlignment="Top" Height="204" Width="300"  SelectedDate="{Binding TaskDate, Mode=TwoWay}" BorderBrush="{x:Null}" />
+        <xctk:MaskedTextBox x:Name="TimeMaskedTextBox" Mask="00:00" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="434,316,0,0" Width="302" Height="34" PromptChar="_" Text="{Binding TimeText, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource CustomMaskedTextBoxStyle}" />
     </Grid>
 </Page>
